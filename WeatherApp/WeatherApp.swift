@@ -12,12 +12,13 @@ struct WeatherApp: App {
     
     let locationHelper = LocationHelper()
     var city = City()
-    
+    let locationSearch = LocationSearchService()
     var body: some Scene {
         WindowGroup {
             CityListView()
                 .environmentObject(city)
                 .environmentObject(locationHelper)
+                .environmentObject(locationSearch)
         }
     }
 }
