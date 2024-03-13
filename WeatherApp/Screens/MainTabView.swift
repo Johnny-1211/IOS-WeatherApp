@@ -13,8 +13,8 @@ struct TabView: View {
 
     var body: some View {
         
-        TabView{
-            
+        NavigationStack{
+            Text("tabview for main weather view")
         }
      
     }

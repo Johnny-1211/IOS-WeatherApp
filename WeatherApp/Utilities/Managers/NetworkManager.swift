@@ -11,7 +11,7 @@ final class NetworkManager{
 
     static let shared = NetworkManager()
     
-    private let weatherURL =  "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Toronto?unitGroup=metric&key=[API_KEY]&include=obs%2Cfcst%2Chours%2Ccurrent"
+    private let weatherURL =  "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Toronto?unitGroup=metric&key=RUBWT6MY6R7DZ3D9JMZGFTXKY&include=obs%2Cfcst%2Chours%2Ccurrent"
     
     private init() {}
   

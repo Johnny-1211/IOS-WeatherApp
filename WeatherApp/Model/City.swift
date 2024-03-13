@@ -7,12 +7,18 @@
 
 import SwiftUI
 
-struct City: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+final class City: ObservableObject {
+    
+    @Published var cities : [Weather] = []
+    
+    func add(_ weather:Weather){
+        cities.append(weather)
     }
+    
+    func deleteItem(at offsets: IndexSet){
+        cities.remove(atOffsets: offsets)
+    }
+    
+    
 }
 
-#Preview {
-    City()
-}
