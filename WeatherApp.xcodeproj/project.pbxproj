@@ -37,7 +37,6 @@
 		B28A9BBD2B9946C000A7EED6 /* UVIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28A9BBC2B9946C000A7EED6 /* UVIndexView.swift */; };
 		B2F175AC2B9E4CDB0071E1AB /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F175AB2B9E4CDB0071E1AB /* MainTabView.swift */; };
 		B2F175AF2B9EABEE0071E1AB /* WeatherMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F175AE2B9EABEE0071E1AB /* WeatherMapView.swift */; };
-		B2F175B22B9EB2800071E1AB /* CitySearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F175B12B9EB2800071E1AB /* CitySearchBar.swift */; };
 		B2F175B72B9EB61D0071E1AB /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F175B62B9EB61D0071E1AB /* LocationSearchService.swift */; };
 /* End PBXBuildFile section */
 
@@ -92,7 +91,6 @@
 		B28A9BBC2B9946C000A7EED6 /* UVIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVIndexView.swift; sourceTree = "<group>"; };
 		B2F175AB2B9E4CDB0071E1AB /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		B2F175AE2B9EABEE0071E1AB /* WeatherMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMapView.swift; sourceTree = "<group>"; };
-		B2F175B12B9EB2800071E1AB /* CitySearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchBar.swift; sourceTree = "<group>"; };
 		B2F175B62B9EB61D0071E1AB /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,7 +193,6 @@
 			isa = PBXGroup;
 			children = (
 				B24AE1A72BA41E42003737F6 /* Button */,
-				B2F175B02B9EB2680071E1AB /* SearchBar */,
 				B224822F2B958AC800EB8C38 /* View */,
 			);
 			path = Views;
@@ -270,14 +267,6 @@
 				B2F175AE2B9EABEE0071E1AB /* WeatherMapView.swift */,
 			);
 			path = MapView;
-			sourceTree = "<group>";
-		};
-		B2F175B02B9EB2680071E1AB /* SearchBar */ = {
-			isa = PBXGroup;
-			children = (
-				B2F175B12B9EB2800071E1AB /* CitySearchBar.swift */,
-			);
-			path = SearchBar;
 			sourceTree = "<group>";
 		};
 		B2F175B52B9EB60E0071E1AB /* Services */ = {
@@ -447,7 +436,6 @@
 				B22482332B958B3F00EB8C38 /* HourlyScrollView.swift in Sources */,
 				B24AE1A92BA41E58003737F6 /* ClearButton.swift in Sources */,
 				B250E20F2B969663009D58A6 /* NetworkManager.swift in Sources */,
-				B2F175B22B9EB2800071E1AB /* CitySearchBar.swift in Sources */,
 				B250E2142B96989C009D58A6 /* Weather.swift in Sources */,
 				B250E21D2B96E134009D58A6 /* Alert.swift in Sources */,
 				B250E2162B969C21009D58A6 /* DaysWeather.swift in Sources */,
