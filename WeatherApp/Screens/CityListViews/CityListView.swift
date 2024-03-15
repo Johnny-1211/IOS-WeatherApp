@@ -9,44 +9,28 @@ import SwiftUI
 
 struct CityListView: View {
     
-    @EnvironmentObject var city: City
+    @ObservedObject var viewModel: CityListViewModel = CityListViewModel()
+    @State var cityList : [Weather] = []
     @EnvironmentObject var locationSearch: LocationSearchService
     
     var body: some View {
         NavigationStack{
             VStack{
-                Section(header: Text("Location Search")) {
-                    ZStack(alignment: .trailing) {
-                        TextField("Search", text: $locationSearch.queryFragment)
-                        // This is optional and simply displays an icon during an active search
-                        if locationSearch.status == .isSearching {
-                            Image(systemName: "clock")
-                                .foregroundColor(Color.gray)
-                        }
+                VStack{
+                    List(self.viewModel.results) { address in
+                        AddressRow(address: address)
                     }
+                    .listStyle(.plain)
+                    .scrollContentBackground(.hidden)
                 }
-                Section(header: Text("Results")) {
-                    List {
-                        // With Xcode 12, this will not be necessary as it supports switch statements.
-                        Group { () -> AnyView in
-                            switch locationSearch.status {
-                            case .noResults: return AnyView(Text("No Results"))
-                            case .error(let description): return AnyView(Text("Error: \(description)"))
-                            default: return AnyView(EmptyView())
-                            }
-                        }.foregroundColor(Color.gray)
-                        
-                        ForEach(locationSearch.searchResults, id: \.self) { completionResult in
-                            // This simply lists the results, use a button in case you'd like to perform an action
-                            // or use a NavigationLink to move to the next view upon selection.
-                            Text(completionResult.title)
-                        }
-                    }
+                .searchable(text: $viewModel.searchableText, prompt: Text("Search address")){}
+                .onChange(of: viewModel.searchableText) { searchText in
+                    viewModel.searchAddress(searchText)
                 }
                 
                 
                 List{
-                    ForEach(city.cities){ city in
+                    ForEach(cityList){ city in
                         Section(footer:centeredFooterView()){
                             VStack(alignment:. leading){
                                 HStack{

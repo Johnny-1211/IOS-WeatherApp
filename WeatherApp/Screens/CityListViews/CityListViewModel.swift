@@ -6,26 +6,36 @@
 //
 
 import Foundation
+import MapKit
 
-//class CityListViewModel : ObservableObject {
-//    
-//    @EnvironmentObject var locationHelper: LocationHelper
-//    @Published var searchingAddress : String = ""
-//    @Published var lat : String = ""
-//    @Published var lng : String = ""
-//    
-//    
-//    private func doGeocoding(address: String){
-//        // call the helper function
-//        self.locationHelper.doForwardGeocoding(address: address, completionHandler: {
-//            (coordinates, error) in
-//            if (error == nil && coordinates != nil){
-//                self.lat = "\(String(describing: coordinates?.coordinate.latitude))"
-//                self.lng = "\(String(describing: coordinates?.coordinate.longitude))"
-//            }else{
-//                return
-//            }
-//        })
-//
-//    }
-//}
+class CityListViewModel : NSObject, ObservableObject {
+    
+    @Published var results: [AddressResult] = []
+    @Published var searchableText = ""
+    
+    private lazy var localSearchCompleter: MKLocalSearchCompleter = {
+        let completer = MKLocalSearchCompleter()
+        completer.delegate = self
+        return completer
+    }()
+    
+    func searchAddress(_ searchableText: String) {
+        guard searchableText.isEmpty == false else { return }
+        localSearchCompleter.queryFragment = searchableText
+    }
+    
+}
+
+extension CityListViewModel: MKLocalSearchCompleterDelegate {
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        Task { @MainActor in
+            results = completer.results.map {
+                AddressResult(title: $0.title, subtitle: $0.subtitle)
+            }
+        }
+    }
+    
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        print(error)
+    }
+}
