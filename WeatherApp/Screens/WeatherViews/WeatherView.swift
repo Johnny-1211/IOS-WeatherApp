@@ -14,7 +14,7 @@ import SwiftUI
 struct WeatherView: View {
 
     @StateObject var viewModel = WeatherViewModel()
-
+//    @Binding var la
     var body: some View {
         ZStack{
             Color.blue
@@ -45,9 +45,9 @@ struct WeatherView: View {
                     }
                 }
                 .padding(.horizontal)
-                .task {
-                    viewModel.getWeather()
-                }
+//                .onAppear() {
+//                    viewModel.getWeather()
+//                }
         }
         .alert(item: $viewModel.alertItem) { alertItem in
             Alert(title: alertItem.title,

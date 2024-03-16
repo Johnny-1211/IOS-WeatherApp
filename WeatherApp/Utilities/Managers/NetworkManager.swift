@@ -10,12 +10,18 @@ import UIKit
 final class NetworkManager{
 
     static let shared = NetworkManager()
-    
-    private let weatherURL =  "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Toronto?unitGroup=metric&key=RUBWT6MY6R7DZ3D9JMZGFTXKY&include=obs%2Cfcst%2Chours%2Ccurrent"
+    let API_KEY = "RUBWT6MY6R7DZ3D9JMZGFTXKY"
+    var lat: Double = 0.0
+    var lng: Double = 0.0
+    private var weatherURL: String {  return "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/\(lat)%2C\(lng)?unitGroup=metric&key=\(API_KEY)&include=obs%2Cfcst%2Chours%2Ccurrent"
+    }
     
     private init() {}
   
-    func getWeather() async throws -> Weather {
+    func getWeather(lat:Double, lng:Double) async throws -> Weather {
+        self.lat = lat
+        self.lng = lng
+        
         guard let url = URL(string: weatherURL) else {
             throw WTError.invalidURL
         }

@@ -13,6 +13,7 @@ class LocationHelper: NSObject, ObservableObject, CLLocationManagerDelegate{
     private let locationManager = CLLocationManager()
     @Published var authorizationStatus : CLAuthorizationStatus = .notDetermined
     @Published var currentLocation: CLLocation?
+    @Published var searchLocation: CLLocation?
     
     override init() {
         super.init()
@@ -93,6 +94,7 @@ class LocationHelper: NSObject, ObservableObject, CLLocationManagerDelegate{
             }else{
                 if let place = placemarks?.first{
                     let matchedLocation = place.location!
+                    self.searchLocation = matchedLocation
                     print(#function, "matchedLocation: \(matchedLocation)")
                     completionHandler(matchedLocation, nil)
                     return

@@ -9,9 +9,9 @@ import Foundation
 import MapKit
 
 class CityListViewModel : NSObject, ObservableObject {
-    
-    @Published var results: [AddressResult] = []
     @Published var searchableText = ""
+    @Published var results: [AddressResult] = []
+    @Published var citiesList : [Weather] = []
     
     private lazy var localSearchCompleter: MKLocalSearchCompleter = {
         let completer = MKLocalSearchCompleter()

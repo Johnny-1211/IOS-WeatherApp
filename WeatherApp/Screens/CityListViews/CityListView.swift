@@ -8,27 +8,13 @@
 import SwiftUI
 
 struct CityListView: View {
-    
+    @State var cityList : [Weather] = [MockData.sampleWeather]
     @ObservedObject var viewModel: CityListViewModel = CityListViewModel()
-    @State var cityList : [Weather] = []
     @EnvironmentObject var locationSearch: LocationSearchService
     
     var body: some View {
         NavigationStack{
             VStack{
-                VStack{
-                    List(self.viewModel.results) { address in
-                        AddressRow(address: address)
-                    }
-                    .listStyle(.plain)
-                    .scrollContentBackground(.hidden)
-                }
-                .searchable(text: $viewModel.searchableText, prompt: Text("Search address")){}
-                .onChange(of: viewModel.searchableText) { searchText in
-                    viewModel.searchAddress(searchText)
-                }
-                
-                
                 List{
                     ForEach(cityList){ city in
                         Section(footer:centeredFooterView()){
@@ -57,10 +43,26 @@ struct CityListView: View {
                         .padding()
                     }
                 }
+                .navigationTitle("Weather")
+                .searchable(text: $viewModel.searchableText, prompt: Text("Search address")){}
+                .onChange(of: viewModel.searchableText) { searchText in
+                    viewModel.searchAddress(searchText)
+                }
+                .overlay {
+                    if !viewModel.searchableText.isEmpty{
+                        VStack{
+                            List(self.viewModel.results) { address in
+                                SearchAddressCell(address: address)
+                            }
+                            .listStyle(.plain)
+                            .scrollContentBackground(.hidden)
+                        }
+                    }
+                }
+                
             }
-            .navigationTitle("Weather")
+
         }
-        
     }
     
     func centeredFooterView() -> some View {
