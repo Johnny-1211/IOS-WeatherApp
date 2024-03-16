@@ -81,10 +81,8 @@ struct WeatherDetailView: View {
                 print("doForwardGeocoding on: \(selectedAddress)")
                  await locationHelper.doForwardGeocoding(address: "\(selectedAddress.title)", completionHandler: { (location, error) in
                     if location == nil {
-                        print("location not found")
                         weatherViewModel.weather = nil
                     }else{
-                        print("Get event from: \(locationHelper.searchLocation!.coordinate.latitude), \(locationHelper.searchLocation!.coordinate.longitude)")
                         weatherViewModel.getWeather(location: locationHelper.searchLocation!)
                     }
                     

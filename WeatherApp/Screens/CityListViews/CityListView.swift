@@ -14,35 +14,17 @@ struct CityListView: View {
     @EnvironmentObject var locationSearch: LocationSearchService
     @EnvironmentObject var locationHelper: LocationHelper
     @EnvironmentObject var city: City
-        
+    
+    @State private var countryName = ""
+    
     var body: some View {
         NavigationStack{
             VStack{
                 List{
                     ForEach(city.cities, id: \.self){ city in
-                        Section(footer:centeredFooterView()){
-                            VStack(alignment:. leading){
-                                HStack{
-                                    VStack(alignment:. leading){
-                                        Text(locationHelper.getCountryFromCoordinates(latitude: city.latitude, longitude: city.longitude))
-                                            .font(.system(size: 30))
-                                            .fontWeight(.bold)
-                                    }
-                                    Spacer()
-                                    Text("\(city.currentConditions.temp, specifier: "%.0f")º")
-                                        .font(.system(size: 50))
-                                }
-                                Spacer()
-                                HStack{
-                                    Text("\(city.currentConditions.conditions)")
-                                    Spacer()
-                                    Text("H:\(city.days.first!.tempmax, specifier: "%.0f")º")
-                                    Text("L:\(city.days.first!.tempmin, specifier: "%.0f")º")
-                                }
-                            }
-                            
+                        NavigationLink(destination: WeatherView(selectedWeather: city)) {
+                            WeatherCitiesListCell(city: city)
                         }
-                        .padding()
                     }
                 }
                 .navigationTitle("Weather")
@@ -61,20 +43,28 @@ struct CityListView: View {
                         }
                     }
                 }
-                
             }
             .onAppear{
-//                if cityListViewModel.citiesList.isEmpty{
-//                Task{
-//                        await weatherViewModel.getWeather(location: locationHelper.currentLocation!)
-//                        try await Task.sleep(nanoseconds: 30_000_000)
-//                        if let currentWeather = weatherViewModel.weather{
-//                            cityListViewModel.citiesList.append(currentWeather)
-//                        }
-//                    }
-//                    
-//                }
+                if city.cities.isEmpty{
+                    locationHelper.requestPermission()
+                    Task{
+                        do{
+                            try await weatherViewModel.getWeather(location: locationHelper.currentLocation!)
+
+                            try await Task.sleep(nanoseconds: 650_000_000)
+                            if let currentWeather = weatherViewModel.weather{
+                                city.add(currentWeather)
+                            }else{
+                                print("invalided weather data")
+                            }
+                        } catch{
+                            print("Error fetching weather data: \(error)")
+                            
+                        }
+                    }
+                }
             }
+            
         }
     }
     
@@ -87,7 +77,10 @@ struct CityListView: View {
             Spacer()
         }
     }
-    
-    
 }
+
+
+
+
+
 

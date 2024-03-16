@@ -17,43 +17,25 @@ class LocationHelper: NSObject, ObservableObject, CLLocationManagerDelegate{
     
     override init() {
         super.init()
-        if (CLLocationManager.locationServicesEnabled()){
-            self.locationManager.delegate = self
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest            
-        }
-        
-        self.checkPermission()
-        
-        if (CLLocationManager.locationServicesEnabled() && (self.authorizationStatus == .authorizedAlways || self.authorizationStatus == .authorizedWhenInUse)){
-            self.locationManager.startUpdatingLocation()
-        }else{
-            self.requestPermission()
-        }
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        requestPermission()
         
     }// init
     
     func requestPermission(){
-        if (CLLocationManager.locationServicesEnabled()){
-            self.locationManager.requestWhenInUseAuthorization()
-        }
+        locationManager.requestWhenInUseAuthorization()
     }
     
     
     func checkPermission(){
+        authorizationStatus = locationManager.authorizationStatus
+
         switch self.locationManager.authorizationStatus{
-        case .denied:
+        case .denied, .notDetermined, .restricted:
             self.requestPermission()
             
-        case .notDetermined:
-            self.requestPermission()
-            
-        case .restricted:
-            self.requestPermission()
-            
-        case .authorizedAlways:
-            self.locationManager.startUpdatingLocation()
-            
-        case .authorizedWhenInUse:
+        case .authorizedAlways,.authorizedWhenInUse:
             self.locationManager.startUpdatingLocation()
             
         default:
@@ -62,11 +44,10 @@ class LocationHelper: NSObject, ObservableObject, CLLocationManagerDelegate{
     }//checkPerm
         
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        self.authorizationStatus = manager.authorizationStatus
+        checkPermission()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         if locations.last != nil{
             //most recent
             self.currentLocation = locations.last!
@@ -78,10 +59,6 @@ class LocationHelper: NSObject, ObservableObject, CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(#function, "Error while trying to get location updates : \(error)")
-    }
-    
-    deinit{
-        self.locationManager.stopUpdatingLocation()
     }
 
     // convert address to coordinates
@@ -105,29 +82,30 @@ class LocationHelper: NSObject, ObservableObject, CLLocationManagerDelegate{
     }//doforward()
     
     // coordinates > address
-    func getCountryFromCoordinates(latitude: Double, longitude: Double) -> String {
+    func getCountryFromCoordinates(latitude: Double, longitude: Double, completion: @escaping (String) -> Void) {
         let location = CLLocation(latitude: latitude, longitude: longitude)
         let geocoder = CLGeocoder()
-        
-        var countryName = ""
-        
+
         geocoder.reverseGeocodeLocation(location) { placemarks, error in
-            guard error == nil else {
-                print("Geocoding error: \(error!)")
+            if let error = error {
+                print("Geocoding error: \(error)")
+                completion("") // Pass empty string if there's an error
                 return
             }
-            
+
             guard let placemark = placemarks?.first else {
                 print("No placemark found")
+                completion("") // Pass empty string if no placemark is found
                 return
             }
-            
+
             if let country = placemark.country {
-                countryName = country
+                completion(country) // Pass the country name to the completion handler
+            } else {
+                completion("") // Pass empty string if country name is not available
             }
         }
-        
-        return countryName
     }
+
     
 }

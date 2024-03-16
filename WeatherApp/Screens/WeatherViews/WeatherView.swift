@@ -14,40 +14,38 @@ import SwiftUI
 struct WeatherView: View {
 
     @StateObject var viewModel = WeatherViewModel()
-//    @Binding var la
+    let selectedWeather : Weather
+    
     var body: some View {
         ZStack{
             Color.blue
                 .ignoresSafeArea()
             
             VStack {
-                if let weather = viewModel.weather{
+//                if let weather = viewModel.weather{
                     
-                    WeatherSummaryView(weather: weather)
+                    WeatherSummaryView(weather: selectedWeather)
                     
                     ScrollView{
-                        HourlyScrollView(weather: weather)
+                        HourlyScrollView(weather: selectedWeather)
                         
-                        DayForecast(weather: weather)
-                        
-                        HStack{
-                            UVIndexView(weather: weather)
-                            FeelLikeView(weather: weather)
-                        }
+                        DayForecast(weather: selectedWeather)
                         
                         HStack{
-                            VisibilityView(weather: weather)
-                            HumidityView(weather: weather)
+                            UVIndexView(weather: selectedWeather)
+                            FeelLikeView(weather: selectedWeather)
+                        }
+                        HStack{
+                            VisibilityView(weather: selectedWeather)
+                            HumidityView(weather: selectedWeather)
                         }
                     }
-                    }else {
-                        Text("No data available")
-                    }
+//                    }else {
+//                        Text("No data available")
+//                    }
                 }
                 .padding(.horizontal)
-//                .onAppear() {
-//                    viewModel.getWeather()
-//                }
+
         }
         .alert(item: $viewModel.alertItem) { alertItem in
             Alert(title: alertItem.title,
