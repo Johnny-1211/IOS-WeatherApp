@@ -105,36 +105,29 @@ class LocationHelper: NSObject, ObservableObject, CLLocationManagerDelegate{
     }//doforward()
     
     // coordinates > address
-    func doReverseGeocoding(location: CLLocation, completionHandler: @escaping(String?, NSError?) -> Void){
-        self.geoCoder.reverseGeocodeLocation(location
-                                             , completionHandler: {
-            (placemarks, error) in
-            
-            if(error != nil){
-                print(#function, "Unable to obtain street address for the given coordinates \(error)")
-                
-                completionHandler(nil, error as NSError?)
-            }else{
-                if let placemarkList = placemarks, let firstPlace = placemarks?.first{
-                    // get street address from coordinates
-                    
-                    let street = firstPlace.thoroughfare ?? "NA"
-                    let postalCode = firstPlace.postalCode ?? "NA"
-                    let country = firstPlace.country ?? "NA"
-                    let province = firstPlace.administrativeArea ?? "NA"
-                    
-                    print(#function, "\(street), \(postalCode), \(country), \(province)")
-                    
-                    //An object that you use to format a contact's postal addresses.
-                    let address = CNPostalAddressFormatter.string(from: firstPlace.postalAddress!, style: .mailingAddress)
-                    
-                    completionHandler(address, nil)
-                    return
-                    
-                }
+    func getCountryFromCoordinates(latitude: Double, longitude: Double) -> String {
+        let location = CLLocation(latitude: latitude, longitude: longitude)
+        let geocoder = CLGeocoder()
+        
+        var countryName = ""
+        
+        geocoder.reverseGeocodeLocation(location) { placemarks, error in
+            guard error == nil else {
+                print("Geocoding error: \(error!)")
+                return
             }
             
-        })
+            guard let placemark = placemarks?.first else {
+                print("No placemark found")
+                return
+            }
+            
+            if let country = placemark.country {
+                countryName = country
+            }
+        }
+        
+        return countryName
     }
     
 }

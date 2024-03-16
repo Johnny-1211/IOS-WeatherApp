@@ -6,36 +6,38 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct CityListView: View {
-    @State var cityList : [Weather] = [MockData.sampleWeather]
-    @ObservedObject var viewModel: CityListViewModel = CityListViewModel()
+    @StateObject var cityListViewModel = CityListViewModel()
+    @StateObject var weatherViewModel = WeatherViewModel()
     @EnvironmentObject var locationSearch: LocationSearchService
-    
+    @EnvironmentObject var locationHelper: LocationHelper
+    @EnvironmentObject var city: City
+        
     var body: some View {
         NavigationStack{
             VStack{
                 List{
-                    ForEach(cityList){ city in
+                    ForEach(city.cities, id: \.self){ city in
                         Section(footer:centeredFooterView()){
                             VStack(alignment:. leading){
                                 HStack{
                                     VStack(alignment:. leading){
-                                        Text("My Location")
+                                        Text(locationHelper.getCountryFromCoordinates(latitude: city.latitude, longitude: city.longitude))
                                             .font(.system(size: 30))
                                             .fontWeight(.bold)
-                                        Text("York")
                                     }
                                     Spacer()
-                                    Text("3º")
+                                    Text("\(city.currentConditions.temp, specifier: "%.0f")º")
                                         .font(.system(size: 50))
                                 }
                                 Spacer()
                                 HStack{
-                                    Text("Colder tmorrow, with a height of 3º")
+                                    Text("\(city.currentConditions.conditions)")
                                     Spacer()
-                                    Text("H:9º")
-                                    Text("L:3º")
+                                    Text("H:\(city.days.first!.tempmax, specifier: "%.0f")º")
+                                    Text("L:\(city.days.first!.tempmin, specifier: "%.0f")º")
                                 }
                             }
                             
@@ -44,15 +46,15 @@ struct CityListView: View {
                     }
                 }
                 .navigationTitle("Weather")
-                .searchable(text: $viewModel.searchableText, prompt: Text("Search address")){}
-                .onChange(of: viewModel.searchableText) { searchText in
-                    viewModel.searchAddress(searchText)
+                .searchable(text: $cityListViewModel.searchableText, prompt: Text("Search address")){}
+                .onChange(of: cityListViewModel.searchableText) { searchText in
+                    cityListViewModel.searchAddress(searchText)
                 }
                 .overlay {
-                    if !viewModel.searchableText.isEmpty{
+                    if !cityListViewModel.searchableText.isEmpty{
                         VStack{
-                            List(self.viewModel.results) { address in
-                                SearchAddressCell(address: address)
+                            List(self.cityListViewModel.results) { address in
+                                SearchAddressCell(address: address )
                             }
                             .listStyle(.plain)
                             .scrollContentBackground(.hidden)
@@ -61,7 +63,18 @@ struct CityListView: View {
                 }
                 
             }
-
+            .onAppear{
+//                if cityListViewModel.citiesList.isEmpty{
+//                Task{
+//                        await weatherViewModel.getWeather(location: locationHelper.currentLocation!)
+//                        try await Task.sleep(nanoseconds: 30_000_000)
+//                        if let currentWeather = weatherViewModel.weather{
+//                            cityListViewModel.citiesList.append(currentWeather)
+//                        }
+//                    }
+//                    
+//                }
+            }
         }
     }
     
@@ -74,6 +87,7 @@ struct CityListView: View {
             Spacer()
         }
     }
+    
     
 }
 

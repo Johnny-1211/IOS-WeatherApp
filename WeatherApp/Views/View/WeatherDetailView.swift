@@ -11,8 +11,8 @@ struct WeatherDetailView: View {
     let selectedAddress: AddressResult
     @Binding var isShowingWeatherSheetView : Bool
     @EnvironmentObject var locationHelper: LocationHelper
-    @ObservedObject var viewModel: WeatherViewModel = WeatherViewModel()
-
+    @ObservedObject var weatherViewModel = WeatherViewModel()
+    @EnvironmentObject var city: City
 
     var body: some View {
         ZStack{
@@ -25,8 +25,6 @@ struct WeatherDetailView: View {
                             withAnimation{
                                 isShowingWeatherSheetView = false
                             }
-                            print("isShowingWeatherSheetView::\(isShowingWeatherSheetView)")
-                            
                         }label: {
                             Text("Cancel")
                                 .foregroundColor(.white)
@@ -37,7 +35,11 @@ struct WeatherDetailView: View {
                         Spacer()
                         
                         Button{
-                            
+                            if let weather = weatherViewModel.weather{
+                                city.add(weather)
+                            }else{
+                                print("weather cannot be added")
+                            }
                         }label: {
                             Text("Add")
                                 .foregroundColor(.white)
@@ -49,22 +51,22 @@ struct WeatherDetailView: View {
                 
                 Spacer()
                 
-                if let weather = viewModel.weather{
-                    WeatherSummaryView(weather: viewModel.weather!)
+                if let selectedWeather = weatherViewModel.weather{
+                    WeatherSummaryView(weather: selectedWeather)
                 
                     ScrollView{
-                        HourlyScrollView(weather: viewModel.weather!)
+                        HourlyScrollView(weather: selectedWeather)
                         
-                        DayForecast(weather: viewModel.weather!)
+                        DayForecast(weather: selectedWeather)
                         
                         HStack{
-                            UVIndexView(weather: viewModel.weather!)
-                            FeelLikeView(weather: viewModel.weather!)
+                            UVIndexView(weather: selectedWeather)
+                            FeelLikeView(weather: selectedWeather)
                         }
                         
                         HStack{
-                            VisibilityView(weather: viewModel.weather!)
-                            HumidityView(weather: viewModel.weather!)
+                            VisibilityView(weather: selectedWeather)
+                            HumidityView(weather: selectedWeather)
                         }
                     }
                 }else {
@@ -80,16 +82,17 @@ struct WeatherDetailView: View {
                  await locationHelper.doForwardGeocoding(address: "\(selectedAddress.title)", completionHandler: { (location, error) in
                     if location == nil {
                         print("location not found")
-                        viewModel.weather = nil
+                        weatherViewModel.weather = nil
                     }else{
                         print("Get event from: \(locationHelper.searchLocation!.coordinate.latitude), \(locationHelper.searchLocation!.coordinate.longitude)")
-                        viewModel.getWeather(location: locationHelper.searchLocation!)
+                        weatherViewModel.getWeather(location: locationHelper.searchLocation!)
                     }
                     
                 })
                 try await Task.sleep(nanoseconds: 30_000_000)
             }
         }
+
     }
 }
 

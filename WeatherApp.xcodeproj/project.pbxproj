@@ -40,6 +40,7 @@
 		B2F175B72B9EB61D0071E1AB /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F175B62B9EB61D0071E1AB /* LocationSearchService.swift */; };
 		B2FA2CBC2BA5276A00B13AD9 /* WeatherCitiesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA2CBB2BA5276A00B13AD9 /* WeatherCitiesListCell.swift */; };
 		B2FA2CBE2BA532AC00B13AD9 /* WeatherDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA2CBD2BA532AC00B13AD9 /* WeatherDetailView.swift */; };
+		B2FA2CC02BA5732B00B13AD9 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA2CBF2BA5732A00B13AD9 /* City.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		B2F175B62B9EB61D0071E1AB /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
 		B2FA2CBB2BA5276A00B13AD9 /* WeatherCitiesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCitiesListCell.swift; sourceTree = "<group>"; };
 		B2FA2CBD2BA532AC00B13AD9 /* WeatherDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailView.swift; sourceTree = "<group>"; };
+		B2FA2CBF2BA5732A00B13AD9 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +255,7 @@
 				B250E2172B969D72009D58A6 /* HoursWeather.swift */,
 				B250E21E2B96E5B4009D58A6 /* CurrentConditions.swift */,
 				B27704612B9D791D00787B41 /* AddressResult.swift */,
+				B2FA2CBF2BA5732A00B13AD9 /* City.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				B277045E2B9D712900787B41 /* CityListView.swift in Sources */,
 				B2F175B72B9EB61D0071E1AB /* LocationSearchService.swift in Sources */,
 				B24AE1AB2BA41E78003737F6 /* SearchAddressCell.swift in Sources */,
+				B2FA2CC02BA5732B00B13AD9 /* City.swift in Sources */,
 				B2F175AC2B9E4CDB0071E1AB /* MainTabView.swift in Sources */,
 				B2FA2CBC2BA5276A00B13AD9 /* WeatherCitiesListCell.swift in Sources */,
 				B28A9BBD2B9946C000A7EED6 /* UVIndexView.swift in Sources */,
