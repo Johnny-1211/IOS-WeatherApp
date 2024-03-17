@@ -10,11 +10,18 @@ import SwiftUI
 struct WeatherSummaryView: View {
     
     let weather: Weather
-    
+    @EnvironmentObject var locationHelper: LocationHelper
+    @State private var countryName = ""
+
     var body: some View {
         VStack {
             
-            Text("\(subString(Address:weather.resolvedAddress))")
+            Text(countryName.isEmpty ? "Loading..." : countryName)
+                .onAppear{
+                    locationHelper.getCountryFromCoordinates(latitude: weather.latitude, longitude: weather.longitude) { country in
+                        countryName = country
+                    }
+                }
                 .font(.title3)
                 .foregroundColor(.white)
                 .fontWeight(.semibold)
@@ -39,13 +46,5 @@ struct WeatherSummaryView: View {
         return String(result)
     }
     
-}
-
-#Preview {
-    ZStack{
-        Color.blue
-            .ignoresSafeArea()
-        WeatherSummaryView(weather: MockData.sampleWeather)
-    }
 }
 

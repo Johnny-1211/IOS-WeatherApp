@@ -57,7 +57,7 @@ struct CityListView: View {
                         do{
                             try await weatherViewModel.getWeather(location: locationHelper.currentLocation!)
 
-                            try await Task.sleep(nanoseconds: 650_000_000)
+                            try await Task.sleep(nanoseconds: 700_000_000)
                             if let currentWeather = weatherViewModel.weather{
                                 city.add(currentWeather)
                             }else{

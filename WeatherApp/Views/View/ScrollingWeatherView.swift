@@ -10,13 +10,8 @@ import SwiftUI
 struct ScrollingWeatherView: View {
     
     let selectedWeather : Weather
-
     
     var body: some View {
-        ZStack{
-            Color.blue
-                .ignoresSafeArea()
-            
             VStack {
                 WeatherSummaryView(weather: selectedWeather)
                 ScrollView{
@@ -32,8 +27,7 @@ struct ScrollingWeatherView: View {
                     }
                 }
             }
-            .padding(.horizontal)
-        }
+            .padding()
     }
 }
 

@@ -23,12 +23,14 @@ struct WeatherView: View {
             TabView{
                 ForEach(city.cities, id: \.self){ city in
                     ScrollingWeatherView(selectedWeather: city)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
+            .frame(
+                width: UIScreen.main.bounds.width,
+                height: UIScreen.main.bounds.height
+            )
             .tabViewStyle(.page(indexDisplayMode: .always))
             .indexViewStyle(.page(backgroundDisplayMode: .always))
-            
             .navigationBarTitleDisplayMode(.inline)
             .toolbar{
                 ToolbarItem(placement: .bottomBar){
