@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct TabView: View {
+struct MainTabView: View {
     
 //    let locationManager = LocationHelper()
 
     var body: some View {
         
         NavigationStack{
-            Text("tabview for main weather view")
+                Text("tabview for main weather view")
         }
      
     }

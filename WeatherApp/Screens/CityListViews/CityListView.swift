@@ -14,9 +14,10 @@ struct CityListView: View {
     @EnvironmentObject var locationSearch: LocationSearchService
     @EnvironmentObject var locationHelper: LocationHelper
     @EnvironmentObject var city: City
+    @State var isShowingWeatherView = false
     
     @State private var countryName = ""
-    
+
     var body: some View {
         NavigationStack{
             VStack{
@@ -43,6 +44,11 @@ struct CityListView: View {
                         }
                     }
                 }
+//                .onTapGesture {
+//                    withAnimation {
+//                        isShowingWeatherView.toggle()
+//                    }
+//                }
             }
             .onAppear{
                 if city.cities.isEmpty{

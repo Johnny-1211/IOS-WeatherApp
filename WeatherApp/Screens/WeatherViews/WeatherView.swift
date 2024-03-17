@@ -12,46 +12,53 @@ import SwiftUI
 
 
 struct WeatherView: View {
-
-    @StateObject var viewModel = WeatherViewModel()
     let selectedWeather : Weather
+    
+    @StateObject var weatherViewModel = WeatherViewModel()
+    @EnvironmentObject var city:City
+    @State var isShowingMap = false
     
     var body: some View {
         ZStack{
-            Color.blue
-                .ignoresSafeArea()
+            TabView{
+                ForEach(city.cities, id: \.self){ city in
+                    ScrollingWeatherView(selectedWeather: city)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+            }
+            .tabViewStyle(.page(indexDisplayMode: .always))
+            .indexViewStyle(.page(backgroundDisplayMode: .always))
             
-            VStack {
-//                if let weather = viewModel.weather{
-                    
-                    WeatherSummaryView(weather: selectedWeather)
-                    
-                    ScrollView{
-                        HourlyScrollView(weather: selectedWeather)
-                        
-                        DayForecast(weather: selectedWeather)
-                        
-                        HStack{
-                            UVIndexView(weather: selectedWeather)
-                            FeelLikeView(weather: selectedWeather)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar{
+                ToolbarItem(placement: .bottomBar){
+                    HStack{
+                        Button{
+                            isShowingMap.toggle()
+                        }label: {
+                            Image(systemName: "map")
                         }
-                        HStack{
-                            VisibilityView(weather: selectedWeather)
-                            HumidityView(weather: selectedWeather)
+                        .fullScreenCover(isPresented: $isShowingMap){
+                            WeatherMapView()
+                        }
+                        
+                        Spacer()
+                        
+                        Button{
+                            
+                        } label: {
+                            Image(systemName: "list.bullet")
                         }
                     }
-//                    }else {
-//                        Text("No data available")
-//                    }
                 }
-                .padding(.horizontal)
-
+            }
+            .background(Color.blue)
         }
-        .alert(item: $viewModel.alertItem) { alertItem in
+        .padding(.horizontal)
+        .alert(item: $weatherViewModel.alertItem) { alertItem in
             Alert(title: alertItem.title,
                   message: alertItem.message,
                   dismissButton: alertItem.dismissButton)
         }
-        
     }
 }
