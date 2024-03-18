@@ -12,7 +12,6 @@ struct WeatherCitiesListCell: View {
     @EnvironmentObject var locationHelper: LocationHelper
     @State private var countryName = ""
 
-
     var body: some View {
         Section{
             VStack(alignment:. leading){
@@ -40,7 +39,6 @@ struct WeatherCitiesListCell: View {
                     Text("L:\(city.days.first!.tempmin, specifier: "%.0f")º")
                 }
             }
-            
         }
         .padding()
     }

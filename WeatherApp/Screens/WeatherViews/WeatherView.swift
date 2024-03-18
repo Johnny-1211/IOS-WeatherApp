@@ -18,45 +18,24 @@ struct WeatherView: View {
     @EnvironmentObject var city:City
     @State var isShowingMap = false
     
+    
+    
     var body: some View {
-        ZStack{
-            TabView{
-                ForEach(city.cities, id: \.self){ city in
-                    ScrollingWeatherView(selectedWeather: city)
-                }
+        ZStack(alignment:.bottom){
+            WeatherTabView(city: city)
+            VStack{
+                Spacer()
+                ControlBar(isShowingMap: $isShowingMap)
+                    .padding()
+                    .background(Color(UIColor.systemBackground))
+                    .ignoresSafeArea(edges: .horizontal)
+                Spacer()
+                    .frame(height: 2)
             }
-            .frame(
-                width: UIScreen.main.bounds.width,
-                height: UIScreen.main.bounds.height
-            )
-            .tabViewStyle(.page(indexDisplayMode: .always))
-            .indexViewStyle(.page(backgroundDisplayMode: .always))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar{
-                ToolbarItem(placement: .bottomBar){
-                    HStack{
-                        Button{
-                            isShowingMap.toggle()
-                        }label: {
-                            Image(systemName: "map")
-                        }
-                        .fullScreenCover(isPresented: $isShowingMap){
-                            WeatherMapView()
-                        }
-                        
-                        Spacer()
-                        
-                        Button{
-                            
-                        } label: {
-                            Image(systemName: "list.bullet")
-                        }
-                    }
-                }
-            }
-            .background(Color.blue)
         }
         .padding(.horizontal)
+        .navigationBarBackButtonHidden(true)
+        .ignoresSafeArea(edges: .bottom)
         .alert(item: $weatherViewModel.alertItem) { alertItem in
             Alert(title: alertItem.title,
                   message: alertItem.message,

@@ -38,6 +38,8 @@
 		B2F175AF2B9EABEE0071E1AB /* WeatherMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F175AE2B9EABEE0071E1AB /* WeatherMapView.swift */; };
 		B2F175B72B9EB61D0071E1AB /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F175B62B9EB61D0071E1AB /* LocationSearchService.swift */; };
 		B2F899522BA6ABB600FFFEC3 /* ScrollingWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F899512BA6ABB600FFFEC3 /* ScrollingWeatherView.swift */; };
+		B2F899542BA7744800FFFEC3 /* WeatherTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F899532BA7744800FFFEC3 /* WeatherTabView.swift */; };
+		B2F899562BA774F300FFFEC3 /* ControlBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F899552BA774F300FFFEC3 /* ControlBar.swift */; };
 		B2FA2CBC2BA5276A00B13AD9 /* WeatherCitiesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA2CBB2BA5276A00B13AD9 /* WeatherCitiesListCell.swift */; };
 		B2FA2CBE2BA532AC00B13AD9 /* WeatherDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA2CBD2BA532AC00B13AD9 /* WeatherDetailView.swift */; };
 		B2FA2CC02BA5732B00B13AD9 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA2CBF2BA5732A00B13AD9 /* City.swift */; };
@@ -95,6 +97,8 @@
 		B2F175AE2B9EABEE0071E1AB /* WeatherMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMapView.swift; sourceTree = "<group>"; };
 		B2F175B62B9EB61D0071E1AB /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
 		B2F899512BA6ABB600FFFEC3 /* ScrollingWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingWeatherView.swift; sourceTree = "<group>"; };
+		B2F899532BA7744800FFFEC3 /* WeatherTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTabView.swift; sourceTree = "<group>"; };
+		B2F899552BA774F300FFFEC3 /* ControlBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBar.swift; sourceTree = "<group>"; };
 		B2FA2CBB2BA5276A00B13AD9 /* WeatherCitiesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCitiesListCell.swift; sourceTree = "<group>"; };
 		B2FA2CBD2BA532AC00B13AD9 /* WeatherDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailView.swift; sourceTree = "<group>"; };
 		B2FA2CBF2BA5732A00B13AD9 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 		B224822D2B958A6100EB8C38 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				B2F899532BA7744800FFFEC3 /* WeatherTabView.swift */,
 				B2F175AD2B9EABBD0071E1AB /* MapView */,
 				B2FAC50D2B9A809B00FB4B8F /* WeatherViews */,
 				B2FAC50E2B9A80AE00FB4B8F /* CityListViews */,
@@ -215,6 +220,7 @@
 				B22D09952B99928000E0AE33 /* VisibilityView.swift */,
 				B22D09972B9993EA00E0AE33 /* HumidityView.swift */,
 				B2F899512BA6ABB600FFFEC3 /* ScrollingWeatherView.swift */,
+				B2F899552BA774F300FFFEC3 /* ControlBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -450,6 +456,7 @@
 				B2FA2CBE2BA532AC00B13AD9 /* WeatherDetailView.swift in Sources */,
 				B27704602B9D76D200787B41 /* CityListViewModel.swift in Sources */,
 				B22D09982B9993EA00E0AE33 /* HumidityView.swift in Sources */,
+				B2F899562BA774F300FFFEC3 /* ControlBar.swift in Sources */,
 				B22482042B94F05900EB8C38 /* WeatherApp.swift in Sources */,
 				B27704622B9D791D00787B41 /* AddressResult.swift in Sources */,
 				B22482332B958B3F00EB8C38 /* HourlyScrollView.swift in Sources */,
@@ -469,6 +476,7 @@
 				B24AE1AB2BA41E78003737F6 /* SearchAddressCell.swift in Sources */,
 				B2FA2CC02BA5732B00B13AD9 /* City.swift in Sources */,
 				B2FA2CBC2BA5276A00B13AD9 /* WeatherCitiesListCell.swift in Sources */,
+				B2F899542BA7744800FFFEC3 /* WeatherTabView.swift in Sources */,
 				B28A9BBD2B9946C000A7EED6 /* UVIndexView.swift in Sources */,
 				B250E21F2B96E5B4009D58A6 /* CurrentConditions.swift in Sources */,
 			);

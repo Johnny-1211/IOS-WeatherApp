@@ -14,7 +14,6 @@ struct CityListView: View {
     @EnvironmentObject var locationSearch: LocationSearchService
     @EnvironmentObject var locationHelper: LocationHelper
     @EnvironmentObject var city: City
-    @State var isShowingWeatherView = false
     
     @State private var countryName = ""
 
@@ -28,6 +27,7 @@ struct CityListView: View {
                         }
                     }
                 }
+                .listRowSpacing(10)
                 .navigationTitle("Weather")
                 .searchable(text: $cityListViewModel.searchableText, prompt: Text("Search address")){}
                 .onChange(of: cityListViewModel.searchableText) { searchText in
@@ -44,11 +44,6 @@ struct CityListView: View {
                         }
                     }
                 }
-//                .onTapGesture {
-//                    withAnimation {
-//                        isShowingWeatherView.toggle()
-//                    }
-//                }
             }
             .onAppear{
                 if city.cities.isEmpty{
@@ -70,7 +65,6 @@ struct CityListView: View {
                     }
                 }
             }
-            
         }
     }
     
