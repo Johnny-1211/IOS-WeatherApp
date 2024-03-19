@@ -22,18 +22,21 @@ struct WeatherView: View {
     
     var body: some View {
         ZStack(alignment:.bottom){
+            Color.blue
+                .ignoresSafeArea()
             WeatherTabView(city: city)
             VStack{
                 Spacer()
                 ControlBar(isShowingMap: $isShowingMap)
                     .padding()
                     .background(Color(UIColor.systemBackground))
-                    .ignoresSafeArea(edges: .horizontal)
+//                    .ignoresSafeArea(edges: .horizontal)
                 Spacer()
                     .frame(height: 2)
             }
         }
         .padding(.horizontal)
+//        .overlay(.ultraThinMaterial)
         .navigationBarBackButtonHidden(true)
         .ignoresSafeArea(edges: .bottom)
         .alert(item: $weatherViewModel.alertItem) { alertItem in

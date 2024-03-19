@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WeatherDetailView: View {
     let selectedAddress: AddressResult
+    @State var offset : CGFloat = 0
     @Binding var isShowingWeatherSheetView : Bool
     @EnvironmentObject var locationHelper: LocationHelper
     @ObservedObject var weatherViewModel = WeatherViewModel()
@@ -18,6 +19,8 @@ struct WeatherDetailView: View {
         ZStack{
             Color.blue
                 .ignoresSafeArea()
+
+            
             VStack {
                 if isShowingWeatherSheetView{
                     HStack{
@@ -52,7 +55,7 @@ struct WeatherDetailView: View {
                 Spacer()
                 
                 if let selectedWeather = weatherViewModel.weather{
-                    WeatherSummaryView(weather: selectedWeather)
+                    WeatherSummaryView(weather: selectedWeather, opacity: getTitleOpacity())
                 
                     ScrollView{
                         HourlyScrollView(weather: selectedWeather)
@@ -75,6 +78,16 @@ struct WeatherDetailView: View {
                 
             }
             .padding(.horizontal)
+            .overlay{
+                GeometryReader{ proxy -> Color in
+                    let minY = proxy.frame(in: .global).minY
+                    
+                    DispatchQueue.main.async{
+                        self.offset = minY
+                    }
+                    return Color.clear
+                }
+            }
         }
         .onAppear{
             Task{
@@ -91,6 +104,25 @@ struct WeatherDetailView: View {
             }
         }
 
+    }
+    
+    func getTitleOpacity() -> CGFloat{
+        
+        let titleOffset = getTitleOffset()
+        
+        let progress = titleOffset / 50
+        
+        let opacity = 1 - progress
+        
+        return opacity
+    }
+    
+    
+    func getTitleOffset() -> CGFloat{
+        let progress = offset/120
+        let newOffset = (progress <= 1.0 ? progress : 1) * 50
+        
+        return newOffset
     }
 }
 

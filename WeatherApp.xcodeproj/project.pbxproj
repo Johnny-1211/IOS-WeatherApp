@@ -20,6 +20,8 @@
 		B22D09942B9990B400E0AE33 /* FeelLikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D09932B9990B400E0AE33 /* FeelLikeView.swift */; };
 		B22D09962B99928000E0AE33 /* VisibilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D09952B99928000E0AE33 /* VisibilityView.swift */; };
 		B22D09982B9993EA00E0AE33 /* HumidityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D09972B9993EA00E0AE33 /* HumidityView.swift */; };
+		B23E38C52BA8FFE900D715D4 /* CustomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23E38C42BA8FFE900D715D4 /* CustomStackView.swift */; };
+		B23E38C72BA900F600D715D4 /* CustomConer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23E38C62BA900F600D715D4 /* CustomConer.swift */; };
 		B24AE1A92BA41E58003737F6 /* ClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24AE1A82BA41E58003737F6 /* ClearButton.swift */; };
 		B24AE1AB2BA41E78003737F6 /* SearchAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24AE1AA2BA41E78003737F6 /* SearchAddressCell.swift */; };
 		B250E20F2B969663009D58A6 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B250E20E2B969663009D58A6 /* NetworkManager.swift */; };
@@ -79,6 +81,8 @@
 		B22D09932B9990B400E0AE33 /* FeelLikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelLikeView.swift; sourceTree = "<group>"; };
 		B22D09952B99928000E0AE33 /* VisibilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibilityView.swift; sourceTree = "<group>"; };
 		B22D09972B9993EA00E0AE33 /* HumidityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityView.swift; sourceTree = "<group>"; };
+		B23E38C42BA8FFE900D715D4 /* CustomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStackView.swift; sourceTree = "<group>"; };
+		B23E38C62BA900F600D715D4 /* CustomConer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomConer.swift; sourceTree = "<group>"; };
 		B24AE1A82BA41E58003737F6 /* ClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearButton.swift; sourceTree = "<group>"; };
 		B24AE1AA2BA41E78003737F6 /* SearchAddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddressCell.swift; sourceTree = "<group>"; };
 		B250E20E2B969663009D58A6 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -219,8 +223,9 @@
 				B22D09932B9990B400E0AE33 /* FeelLikeView.swift */,
 				B22D09952B99928000E0AE33 /* VisibilityView.swift */,
 				B22D09972B9993EA00E0AE33 /* HumidityView.swift */,
-				B2F899512BA6ABB600FFFEC3 /* ScrollingWeatherView.swift */,
 				B2F899552BA774F300FFFEC3 /* ControlBar.swift */,
+				B23E38C42BA8FFE900D715D4 /* CustomStackView.swift */,
+				B23E38C62BA900F600D715D4 /* CustomConer.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -305,6 +310,7 @@
 				B22482052B94F05900EB8C38 /* WeatherView.swift */,
 				B250E2102B9697BB009D58A6 /* WeatherViewModel.swift */,
 				B2FA2CBD2BA532AC00B13AD9 /* WeatherDetailView.swift */,
+				B2F899512BA6ABB600FFFEC3 /* ScrollingWeatherView.swift */,
 			);
 			path = WeatherViews;
 			sourceTree = "<group>";
@@ -468,6 +474,7 @@
 				B250E2182B969D72009D58A6 /* HoursWeather.swift in Sources */,
 				B250E2112B9697BB009D58A6 /* WeatherViewModel.swift in Sources */,
 				B250E21B2B96A20F009D58A6 /* WTError.swift in Sources */,
+				B23E38C72BA900F600D715D4 /* CustomConer.swift in Sources */,
 				B22482372B9596D800EB8C38 /* WeatherSummaryView.swift in Sources */,
 				B22482312B958AE300EB8C38 /* DayForecast.swift in Sources */,
 				B27704642B9D86B900787B41 /* LocationHelper.swift in Sources */,
@@ -476,6 +483,7 @@
 				B24AE1AB2BA41E78003737F6 /* SearchAddressCell.swift in Sources */,
 				B2FA2CC02BA5732B00B13AD9 /* City.swift in Sources */,
 				B2FA2CBC2BA5276A00B13AD9 /* WeatherCitiesListCell.swift in Sources */,
+				B23E38C52BA8FFE900D715D4 /* CustomStackView.swift in Sources */,
 				B2F899542BA7744800FFFEC3 /* WeatherTabView.swift in Sources */,
 				B28A9BBD2B9946C000A7EED6 /* UVIndexView.swift in Sources */,
 				B250E21F2B96E5B4009D58A6 /* CurrentConditions.swift in Sources */,

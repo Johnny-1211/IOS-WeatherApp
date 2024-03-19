@@ -11,16 +11,21 @@ struct WeatherTabView: View {
     let city : City
     
     var body: some View {
+        
         TabView{
-            ForEach(city.cities, id: \.self){ city in
-                ScrollingWeatherView(selectedWeather: city)
+            GeometryReader{ proxy in
+                let topEdge = proxy.safeAreaInsets.top
+                ForEach(city.cities, id: \.self){ city in
+                    ScrollingWeatherView(topEdge: topEdge,selectedWeather: city)
+                }
             }
+//            .ignoresSafeArea(.all, edges: .top)
         }
         .frame(
             width: UIScreen.main.bounds.width
         )
         .tabViewStyle(.page(indexDisplayMode: .always))
+        
     }
+    
 }
-
-

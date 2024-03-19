@@ -12,40 +12,84 @@ struct HourlyScrollView: View {
     let weather:Weather
     
     var body: some View{
-        VStack{
-            Text("\(weather.description)")
-                .foregroundColor(.white)
-                .fontWeight(.semibold)
+        VStack(spacing: 8){
             
-            Divider()
-            
-            ScrollView(.horizontal){
-                HStack(spacing: 10){
-                    ForEach(weather.days.first!.hours, id:\.self) { hours in
-                        VStack{
-                            Text("\(formattedTime(from:hours.datetime))")
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-
-                            Image(systemName: "cloud.sun.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundColor(.white)
-                                .frame(width: 40)
-
-                            Text("\(hours.temp, specifier: "%.0f")º")
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-
-                        }
-                    }
-                    
+            CustomStackView {
+                Label{
+                    Text("Hourly Forecast")
+                } icon:{
+                    Image(systemName: "clock")
                 }
+            } contentView: {
+                ScrollView(.horizontal, showsIndicators: false){
+                    HStack(spacing: 15){
+                        ForEach(weather.days.first!.hours, id:\.self) { hours in
+                            VStack(spacing: 15){
+                                Text("\(formattedTime(from:hours.datetime))")
+                                    .foregroundColor(.white)
+                                    .fontWeight(.bold)
+                                
+                                Image(systemName: "cloud.sun.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                //                                .foregroundColor(.white)
+                                    .frame(width: 30)
+                                    .font(.title2)
+                                
+                                Text("\(hours.temp, specifier: "%.0f")º")
+                                    .foregroundColor(.white)
+                                    .fontWeight(.bold)
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                }
+                
             }
         }
-        .padding()
-        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16.0))
     }
+
+            
+            
+            
+            
+//            Text("\(weather.description)")
+//                .foregroundColor(.white)
+//                .fontWeight(.semibold)
+            
+//            Divider()
+            
+//            ScrollView(.horizontal, showsIndicators: false){
+//                HStack(spacing: 15){
+//                    ForEach(weather.days.first!.hours, id:\.self) { hours in
+//                        VStack(spacing: 15){
+//                            Text("\(formattedTime(from:hours.datetime))")
+//                                .foregroundColor(.white)
+//                                .fontWeight(.bold)
+//
+//                            Image(systemName: "cloud.sun.fill")
+//                                .resizable()
+//                                .scaledToFit()
+////                                .foregroundColor(.white)
+//                                .frame(width: 30)
+//                                .font(.title2)
+//
+//                            Text("\(hours.temp, specifier: "%.0f")º")
+//                                .foregroundColor(.white)
+//                                .fontWeight(.bold)
+//
+//                        }
+//                        
+//                    }
+//                    
+//                }
+//            }
+//        }
+//        .padding()
+//        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16.0))
+//    }
     
     func formattedTime(from timeString: String) -> String {
            let dateFormatter = DateFormatter()
