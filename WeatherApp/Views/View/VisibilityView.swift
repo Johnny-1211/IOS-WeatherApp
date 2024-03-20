@@ -20,18 +20,19 @@ struct VisibilityView: View {
                 
             }
         } contentView: {
-            VStack(alignment:.leading, spacing: 10){
+            VStack(alignment: .leading, spacing: 10){
                 Text("\(weather.currentConditions.visibility, specifier: "%.0f") km")
                     .font(.title)
-                    .foregroundColor(.white)
                     .fontWeight(.semibold)
                 
                 Spacer()
                 
                 Text("Perfectly clear view.")
-                    .foregroundColor(.white)
                     .fontWeight(.semibold)
             }
+            .foregroundStyle(.white)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            
         }
     }
 }

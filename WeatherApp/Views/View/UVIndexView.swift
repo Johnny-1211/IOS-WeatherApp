@@ -21,7 +21,6 @@ struct UVIndexView: View {
             VStack(alignment:.leading, spacing: 10){
                 Text("\(weather.currentConditions.uvindex)")
                     .font(.title)
-                    .foregroundColor(.white)
                     .fontWeight(.semibold)
                 
                 VStack{
@@ -35,7 +34,6 @@ struct UVIndexView: View {
                     }
                 }
                 .font(.title2)
-                .foregroundColor(.white)
                 .fontWeight(.bold)
                 
                 Spacer()
@@ -58,6 +56,8 @@ struct UVIndexView: View {
                         }
                     )
             }
+            .foregroundStyle(.white)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }

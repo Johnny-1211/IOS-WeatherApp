@@ -23,15 +23,15 @@ struct HumidityView: View {
             VStack(alignment:.leading, spacing: 10){
                 Text("\(weather.currentConditions.humidity, specifier: "%.0f")%")
                     .font(.title)
-                    .foregroundColor(.white)
                     .fontWeight(.semibold)
                 
                 Spacer()
                 
                 Text("The dew point is \(weather.currentConditions.feelslike, specifier: "%.0f")º right now.")
-                    .foregroundColor(.white)
                     .fontWeight(.semibold)
             }
+            .foregroundStyle(.white)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }

@@ -14,24 +14,22 @@ struct FeelLikeView: View {
         CustomStackView {
             Label{
                 Text("FEELS LIKE")
-
             } icon: {
                 Image(systemName: "thermometer.medium")
-
             }
         } contentView: {
             VStack(alignment:.leading, spacing: 10){
                 Text("\(weather.currentConditions.feelslike, specifier: "%.0f")º")
                     .font(.title)
-                    .foregroundColor(.white)
                     .fontWeight(.semibold)
                 
                 Spacer()
                 
                 Text("Wind is making it feel colder.")
-                    .foregroundColor(.white)
                     .fontWeight(.semibold)
             }
+            .foregroundStyle(.white)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
