@@ -19,7 +19,6 @@ struct WeatherTabView: View {
                     ScrollingWeatherView(topEdge: topEdge,selectedWeather: city)
                 }
             }
-//            .ignoresSafeArea(.all, edges: .top)
         }
         .frame(
             width: UIScreen.main.bounds.width

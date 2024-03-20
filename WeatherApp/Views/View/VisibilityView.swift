@@ -10,37 +10,28 @@ import SwiftUI
 struct VisibilityView: View {
     let weather:Weather
     var body: some View {
-        VStack(alignment: .leading){
-            HStack{
-                Image(systemName: "eye.fill")
+        
+        CustomStackView {
+            Label{
                 Text("VISIBILITY")
+                
+            } icon: {
+                Image(systemName: "eye.fill")
+                
             }
-            .opacity(0.4)
-            
-            Divider()
-            
-            Text("\(weather.currentConditions.visibility, specifier: "%.0f") km")
-                .font(.title)
-                .foregroundColor(.white)
-                .fontWeight(.semibold)
-            
-            Spacer()
-            
-            Text("Perfectly clear view.")
-                .foregroundColor(.white)
-                .fontWeight(.semibold)
+        } contentView: {
+            VStack(alignment:.leading, spacing: 10){
+                Text("\(weather.currentConditions.visibility, specifier: "%.0f") km")
+                    .font(.title)
+                    .foregroundColor(.white)
+                    .fontWeight(.semibold)
+                
+                Spacer()
+                
+                Text("Perfectly clear view.")
+                    .foregroundColor(.white)
+                    .fontWeight(.semibold)
+            }
         }
-        .frame(width:150, height: 150)
-        .padding()
-        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16.0))   
     }
-}
-
-#Preview {
-    ZStack{
-        Color.blue
-            .ignoresSafeArea()
-        VisibilityView(weather: MockData.sampleWeather)
-    }
-    
 }

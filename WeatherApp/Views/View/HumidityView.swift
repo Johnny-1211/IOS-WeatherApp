@@ -10,37 +10,29 @@ import SwiftUI
 struct HumidityView: View {
     let weather: Weather
     var body: some View {
-        VStack(alignment: .leading){
-            HStack{
-                Image(systemName: "humidity.fill")
+        
+        CustomStackView {
+            Label{
                 Text("HUMIDITY")
+
+            } icon: {
+                Image(systemName: "humidity.fill")
+
             }
-            .opacity(0.4)
-            
-            Divider()
-            
-            Text("\(weather.currentConditions.humidity, specifier: "%.0f")%")
-                .font(.title)
-                .foregroundColor(.white)
-                .fontWeight(.semibold)
-            
-            Spacer()
-            
-            Text("The dew point is 2º right now.")
-                .foregroundColor(.white)
-                .fontWeight(.semibold)
+        } contentView: {
+            VStack(alignment:.leading, spacing: 10){
+                Text("\(weather.currentConditions.humidity, specifier: "%.0f")%")
+                    .font(.title)
+                    .foregroundColor(.white)
+                    .fontWeight(.semibold)
+                
+                Spacer()
+                
+                Text("The dew point is \(weather.currentConditions.feelslike, specifier: "%.0f")º right now.")
+                    .foregroundColor(.white)
+                    .fontWeight(.semibold)
+            }
         }
-        .frame(width:150, height: 150)
-        .padding()
-        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16.0))
     }
 }
 
-#Preview {
-    ZStack{
-        Color.blue
-            .ignoresSafeArea()
-        HumidityView(weather: MockData.sampleWeather)
-    }
-    
-}

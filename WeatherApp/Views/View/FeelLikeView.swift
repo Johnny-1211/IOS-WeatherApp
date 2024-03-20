@@ -10,36 +10,30 @@ import SwiftUI
 struct FeelLikeView: View {
     let weather:Weather
     var body: some View {
-        VStack(alignment: .leading){
-            HStack{
-                Image(systemName: "thermometer.medium")
+        
+        CustomStackView {
+            Label{
                 Text("FEELS LIKE")
+
+            } icon: {
+                Image(systemName: "thermometer.medium")
+
             }
-            .opacity(0.4)
-            
-            Divider()
-            
-            Text("\(weather.currentConditions.feelslike, specifier: "%.0f")º")
-                .font(.title)
-                .foregroundColor(.white)
-                .fontWeight(.semibold)
-            
-            Spacer()
-            
-            Text("Wind is making it feel colder.")
-                .foregroundColor(.white)
-                .fontWeight(.semibold)
+        } contentView: {
+            VStack(alignment:.leading, spacing: 10){
+                Text("\(weather.currentConditions.feelslike, specifier: "%.0f")º")
+                    .font(.title)
+                    .foregroundColor(.white)
+                    .fontWeight(.semibold)
+                
+                Spacer()
+                
+                Text("Wind is making it feel colder.")
+                    .foregroundColor(.white)
+                    .fontWeight(.semibold)
+            }
         }
-        .frame(width:150, height: 150)
-        .padding()
-        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16.0))
     }
 }
 
-#Preview {
-    ZStack{
-        Color.blue
-            .ignoresSafeArea()
-        FeelLikeView(weather: MockData.sampleWeather)
-    }
-}
+

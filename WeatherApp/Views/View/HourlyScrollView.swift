@@ -32,7 +32,6 @@ struct HourlyScrollView: View {
                                 Image(systemName: "cloud.sun.fill")
                                     .resizable()
                                     .scaledToFit()
-                                //                                .foregroundColor(.white)
                                     .frame(width: 30)
                                     .font(.title2)
                                 
@@ -51,46 +50,6 @@ struct HourlyScrollView: View {
         }
     }
 
-            
-            
-            
-            
-//            Text("\(weather.description)")
-//                .foregroundColor(.white)
-//                .fontWeight(.semibold)
-            
-//            Divider()
-            
-//            ScrollView(.horizontal, showsIndicators: false){
-//                HStack(spacing: 15){
-//                    ForEach(weather.days.first!.hours, id:\.self) { hours in
-//                        VStack(spacing: 15){
-//                            Text("\(formattedTime(from:hours.datetime))")
-//                                .foregroundColor(.white)
-//                                .fontWeight(.bold)
-//
-//                            Image(systemName: "cloud.sun.fill")
-//                                .resizable()
-//                                .scaledToFit()
-////                                .foregroundColor(.white)
-//                                .frame(width: 30)
-//                                .font(.title2)
-//
-//                            Text("\(hours.temp, specifier: "%.0f")º")
-//                                .foregroundColor(.white)
-//                                .fontWeight(.bold)
-//
-//                        }
-//                        
-//                    }
-//                    
-//                }
-//            }
-//        }
-//        .padding()
-//        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16.0))
-//    }
-    
     func formattedTime(from timeString: String) -> String {
            let dateFormatter = DateFormatter()
            dateFormatter.dateFormat = "HH:mm:ss"
@@ -100,7 +59,6 @@ struct HourlyScrollView: View {
            }
            
            dateFormatter.dateFormat = "h a"
-           
            return dateFormatter.string(from: date)
        }
 }

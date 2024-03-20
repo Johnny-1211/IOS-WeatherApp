@@ -14,27 +14,11 @@ struct ScrollingWeatherView: View {
     let selectedWeather : Weather
     
     var body: some View {
-        //            VStack {
-        //                WeatherSummaryView(weather: selectedWeather)
-        //                ScrollView{
-        //                    HourlyScrollView(weather: selectedWeather)
-        //                    DayForecast(weather: selectedWeather)
-        //                    HStack{
-        //                        UVIndexView(weather: selectedWeather)
-        //                        FeelLikeView(weather: selectedWeather)
-        //                    }
-        //                    HStack{
-        //                        VisibilityView(weather: selectedWeather)
-        //                        HumidityView(weather: selectedWeather)
-        //                    }
-        //                }
-        //            }
-        //            .padding()
         ScrollView(.vertical, showsIndicators: false){
             VStack{
                 WeatherSummaryView(weather: selectedWeather,opacity: getTitleOpacity())
                     .offset(y:-offset)
-                    .offset(y: offset > 0 ? (offset / UIScreen.main.bounds.width) * 100 : 0)
+                    .offset(y: offset > 0 ? (offset / UIScreen.main.bounds.width) * 120 : 0)
                     .offset(y: getTitleOffset())
                 HourlyScrollView(weather: selectedWeather)
                 DayForecast(weather: selectedWeather)
@@ -50,6 +34,7 @@ struct ScrollingWeatherView: View {
             .padding(.top,85)
             .padding(.top, topEdge)
             .padding([.horizontal,.bottom])
+            .padding(.bottom, 20)
             .overlay{
                 GeometryReader{ proxy -> Color in
                     let minY = proxy.frame(in: .global).minY

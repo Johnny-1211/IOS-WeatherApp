@@ -15,32 +15,7 @@ struct WeatherSummaryView: View {
     @State private var countryName = ""
 
     var body: some View {
-//        VStack(alignment: .center, spacing: 5){
-//            
-//            Text(countryName.isEmpty ? "Loading..." : countryName)
-//                .onAppear{
-//                    locationHelper.getCountryFromCoordinates(latitude: weather.latitude, longitude: weather.longitude) { country in
-//                        countryName = country
-//                    }
-//                }
-//                .font(.title3)
-//                .foregroundColor(.white)
-//                .fontWeight(.semibold)
-//            Text("\(weather.currentConditions.temp, specifier: "%.0f")º")
-//                .font(.system(size: 80))
-//                .foregroundColor(.white)
-//            Text("\(weather.currentConditions.conditions)")
-//                .foregroundColor(.white)
-//                .fontWeight(.semibold)
-//            HStack{
-//                Text("H:\(weather.days.first!.tempmax, specifier: "%.0f")º")
-//                Text("L:\(weather.days.first!.tempmin, specifier: "%.0f")º")
-//            }
-//            .foregroundColor(.white)
-//            .fontWeight(.semibold)
-//        }
         VStack(alignment: .center, spacing: 5){
-            
             Text(countryName.isEmpty ? "Loading..." : countryName)
                 .onAppear{
                     locationHelper.getCountryFromCoordinates(latitude: weather.latitude, longitude: weather.longitude) { country in
@@ -56,6 +31,7 @@ struct WeatherSummaryView: View {
                 .foregroundColor(.white)
                 .shadow(radius: 5)
                 .opacity(opacity)
+
             
             Text("\(weather.currentConditions.conditions)")
                 .foregroundStyle(.secondary)
