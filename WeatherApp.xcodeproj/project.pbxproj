@@ -22,6 +22,8 @@
 		B22D09982B9993EA00E0AE33 /* HumidityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D09972B9993EA00E0AE33 /* HumidityView.swift */; };
 		B23E38C52BA8FFE900D715D4 /* CustomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23E38C42BA8FFE900D715D4 /* CustomStackView.swift */; };
 		B23E38C72BA900F600D715D4 /* CustomConer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23E38C62BA900F600D715D4 /* CustomConer.swift */; };
+		B23E38C92BAA9DF400D715D4 /* RainFall.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23E38C82BAA9DF400D715D4 /* RainFall.swift */; };
+		B23E38CD2BAA9E7D00D715D4 /* RainFallEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = B23E38CB2BAA9E7D00D715D4 /* RainFallEffect.sks */; };
 		B24AE1A92BA41E58003737F6 /* ClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24AE1A82BA41E58003737F6 /* ClearButton.swift */; };
 		B24AE1AB2BA41E78003737F6 /* SearchAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24AE1AA2BA41E78003737F6 /* SearchAddressCell.swift */; };
 		B250E20F2B969663009D58A6 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B250E20E2B969663009D58A6 /* NetworkManager.swift */; };
@@ -83,6 +85,8 @@
 		B22D09972B9993EA00E0AE33 /* HumidityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityView.swift; sourceTree = "<group>"; };
 		B23E38C42BA8FFE900D715D4 /* CustomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStackView.swift; sourceTree = "<group>"; };
 		B23E38C62BA900F600D715D4 /* CustomConer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomConer.swift; sourceTree = "<group>"; };
+		B23E38C82BAA9DF400D715D4 /* RainFall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainFall.swift; sourceTree = "<group>"; };
+		B23E38CB2BAA9E7D00D715D4 /* RainFallEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = RainFallEffect.sks; sourceTree = "<group>"; };
 		B24AE1A82BA41E58003737F6 /* ClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearButton.swift; sourceTree = "<group>"; };
 		B24AE1AA2BA41E78003737F6 /* SearchAddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddressCell.swift; sourceTree = "<group>"; };
 		B250E20E2B969663009D58A6 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 		B22482022B94F05900EB8C38 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				B23E38CA2BAA9E3800D715D4 /* SpriteFiles */,
 				B250E2122B96988D009D58A6 /* Model */,
 				B250E20C2B96963C009D58A6 /* Utilities */,
 				B224822E2B958A7000EB8C38 /* Views */,
@@ -228,6 +233,15 @@
 				B23E38C62BA900F600D715D4 /* CustomConer.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B23E38CA2BAA9E3800D715D4 /* SpriteFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B23E38C82BAA9DF400D715D4 /* RainFall.swift */,
+				B23E38CB2BAA9E7D00D715D4 /* RainFallEffect.sks */,
+			);
+			path = SpriteFiles;
 			sourceTree = "<group>";
 		};
 		B24AE1A72BA41E42003737F6 /* Button */ = {
@@ -429,6 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B224820B2B94F05B00EB8C38 /* Preview Assets.xcassets in Resources */,
+				B23E38CD2BAA9E7D00D715D4 /* RainFallEffect.sks in Resources */,
 				B22482082B94F05B00EB8C38 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,6 +477,7 @@
 				B2FA2CBE2BA532AC00B13AD9 /* WeatherDetailView.swift in Sources */,
 				B27704602B9D76D200787B41 /* CityListViewModel.swift in Sources */,
 				B22D09982B9993EA00E0AE33 /* HumidityView.swift in Sources */,
+				B23E38C92BAA9DF400D715D4 /* RainFall.swift in Sources */,
 				B2F899562BA774F300FFFEC3 /* ControlBar.swift in Sources */,
 				B22482042B94F05900EB8C38 /* WeatherApp.swift in Sources */,
 				B27704622B9D791D00787B41 /* AddressResult.swift in Sources */,

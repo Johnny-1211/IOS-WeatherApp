@@ -17,11 +17,6 @@ struct WeatherSummaryView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 5){
             Text(countryName.isEmpty ? "Loading..." : countryName)
-                .onAppear{
-                    locationHelper.getCountryFromCoordinates(latitude: weather.latitude, longitude: weather.longitude) { country in
-                        countryName = country
-                    }
-                }
                 .font(.system(size: 35))
                 .foregroundColor(.white)
                 .shadow(radius: 5)
@@ -46,6 +41,11 @@ struct WeatherSummaryView: View {
             .foregroundColor(.white)
             .shadow(radius: 5)
             .opacity(opacity)
+        }
+        .onAppear{
+            locationHelper.getCountryFromCoordinates(latitude: weather.latitude, longitude: weather.longitude) { country in
+                countryName = country
+            }
         }
     }
     

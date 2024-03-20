@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SpriteKit
 
 /// https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Toronto?unitGroup=metric&key=RUBWT6MY6R7DZ3D9JMZGFTXKY&include=obs%2Cfcst%2Chours%2Ccurrent
 ///
@@ -22,9 +23,23 @@ struct WeatherView: View {
     
     var body: some View {
         ZStack(alignment:.bottom){
-            Color.blue
-                .ignoresSafeArea()
+            
+            GeometryReader{ proxy in
+                Image("rainSky")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: proxy.size.width, height: proxy.size.height)
+            }
+            .ignoresSafeArea()
+            .overlay(.ultraThinMaterial)
+            
+            GeometryReader{_ in
+                SpriteView(scene: RainFall(), options: [.allowsTransparency])
+            }
+            .ignoresSafeArea()
+            
             WeatherTabView(city: city)
+                    
             VStack{
                 Spacer()
                 ControlBar(isShowingMap: $isShowingMap)
@@ -36,7 +51,6 @@ struct WeatherView: View {
             }
         }
         .padding(.horizontal)
-//        .overlay(.ultraThinMaterial)
         .navigationBarBackButtonHidden(true)
         .ignoresSafeArea(edges: .bottom)
         .alert(item: $weatherViewModel.alertItem) { alertItem in
