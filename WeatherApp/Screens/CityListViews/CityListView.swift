@@ -16,15 +16,17 @@ struct CityListView: View {
     @EnvironmentObject var city: City
     
     @State private var countryName = ""
-
+    
     var body: some View {
         NavigationStack{
             VStack{
                 List{
                     ForEach(city.cities, id: \.self){ city in
-                        NavigationLink(destination: WeatherView(selectedWeather: city)) {
-                            WeatherCitiesListCell(city: city)
-                        }
+                        WeatherCitiesListCell(city: city)
+                            .background(
+                                NavigationLink("",destination: WeatherView(selectedWeather: city))
+                                    .opacity(0)
+                            )
                     }
                 }
                 .listRowSpacing(10)
@@ -51,7 +53,7 @@ struct CityListView: View {
                     Task{
                         do{
                             try await weatherViewModel.getWeather(location: locationHelper.currentLocation!)
-
+                            
                             try await Task.sleep(nanoseconds: 700_000_000)
                             if let currentWeather = weatherViewModel.weather{
                                 city.add(currentWeather)
