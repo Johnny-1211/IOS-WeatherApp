@@ -53,9 +53,10 @@ struct DayForecast: View {
                             
                             HStack {
                                 
-                                ProgressView(value: 0.6)
+                                ProgressView(value: day.tempmin, total: 40)
                                     .progressViewStyle(LinearProgressViewStyle())
                                     .frame(width: 100)
+
                                 
                                 Spacer()
                                 
@@ -86,4 +87,5 @@ struct DayForecast: View {
         return nil
     }
 }
+
 
