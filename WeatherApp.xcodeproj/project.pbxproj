@@ -38,6 +38,8 @@
 		B27704602B9D76D200787B41 /* CityListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B277045F2B9D76D200787B41 /* CityListViewModel.swift */; };
 		B27704622B9D791D00787B41 /* AddressResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27704612B9D791D00787B41 /* AddressResult.swift */; };
 		B27704642B9D86B900787B41 /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27704632B9D86B900787B41 /* LocationHelper.swift */; };
+		B2875FF82BABC74E00292F31 /* SnowFallEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = B2875FF62BABC74E00292F31 /* SnowFallEffect.sks */; };
+		B2875FFB2BABC7C600292F31 /* SnowFall.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2875FFA2BABC7C600292F31 /* SnowFall.swift */; };
 		B28A9BBD2B9946C000A7EED6 /* UVIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28A9BBC2B9946C000A7EED6 /* UVIndexView.swift */; };
 		B2F175AF2B9EABEE0071E1AB /* WeatherMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F175AE2B9EABEE0071E1AB /* WeatherMapView.swift */; };
 		B2F175B72B9EB61D0071E1AB /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F175B62B9EB61D0071E1AB /* LocationSearchService.swift */; };
@@ -101,6 +103,8 @@
 		B277045F2B9D76D200787B41 /* CityListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListViewModel.swift; sourceTree = "<group>"; };
 		B27704612B9D791D00787B41 /* AddressResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressResult.swift; sourceTree = "<group>"; };
 		B27704632B9D86B900787B41 /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
+		B2875FF62BABC74E00292F31 /* SnowFallEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SnowFallEffect.sks; sourceTree = "<group>"; };
+		B2875FFA2BABC7C600292F31 /* SnowFall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnowFall.swift; sourceTree = "<group>"; };
 		B28A9BBC2B9946C000A7EED6 /* UVIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVIndexView.swift; sourceTree = "<group>"; };
 		B2F175AE2B9EABEE0071E1AB /* WeatherMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMapView.swift; sourceTree = "<group>"; };
 		B2F175B62B9EB61D0071E1AB /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
@@ -239,7 +243,9 @@
 			isa = PBXGroup;
 			children = (
 				B23E38C82BAA9DF400D715D4 /* RainFall.swift */,
+				B2875FFA2BABC7C600292F31 /* SnowFall.swift */,
 				B23E38CB2BAA9E7D00D715D4 /* RainFallEffect.sks */,
+				B2875FF62BABC74E00292F31 /* SnowFallEffect.sks */,
 			);
 			path = SpriteFiles;
 			sourceTree = "<group>";
@@ -444,6 +450,7 @@
 			files = (
 				B224820B2B94F05B00EB8C38 /* Preview Assets.xcassets in Resources */,
 				B23E38CD2BAA9E7D00D715D4 /* RainFallEffect.sks in Resources */,
+				B2875FF82BABC74E00292F31 /* SnowFallEffect.sks in Resources */,
 				B22482082B94F05B00EB8C38 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,6 +492,7 @@
 				B24AE1A92BA41E58003737F6 /* ClearButton.swift in Sources */,
 				B250E20F2B969663009D58A6 /* NetworkManager.swift in Sources */,
 				B250E2142B96989C009D58A6 /* Weather.swift in Sources */,
+				B2875FFB2BABC7C600292F31 /* SnowFall.swift in Sources */,
 				B250E21D2B96E134009D58A6 /* Alert.swift in Sources */,
 				B250E2162B969C21009D58A6 /* DaysWeather.swift in Sources */,
 				B250E2182B969D72009D58A6 /* HoursWeather.swift in Sources */,
