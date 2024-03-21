@@ -18,7 +18,7 @@ struct ScrollingWeatherView: View {
             VStack{
                 WeatherSummaryView(weather: selectedWeather,opacity: getTitleOpacity())
                     .offset(y:-offset)
-                    .offset(y: offset > 0 ? (offset / UIScreen.main.bounds.width) * 120 : 0)
+                    .offset(y: offset > 0 ? (offset / UIScreen.main.bounds.width) * 140 : 0)
                     .offset(y: getTitleOffset())
                 HourlyScrollView(weather: selectedWeather)
                 DayForecast(weather: selectedWeather)
@@ -31,7 +31,7 @@ struct ScrollingWeatherView: View {
                     HumidityView(weather: selectedWeather)
                 }
             }
-            .padding(.top,85)
+            .padding(.top,35)
             .padding(.top, topEdge)
             .padding([.horizontal,.bottom])
             .padding(.bottom, 20)
@@ -45,7 +45,7 @@ struct ScrollingWeatherView: View {
                     return Color.clear
                 }
             }
-        }
+         }
     }
     func getTitleOpacity() -> CGFloat{
         
@@ -61,7 +61,7 @@ struct ScrollingWeatherView: View {
     
     func getTitleOffset() -> CGFloat{
         if offset < 0 {
-            let progress = -offset/120
+            let progress = -offset/140
             
             let newOffset = (progress <= 1.0 ? progress : 1) * 20
             

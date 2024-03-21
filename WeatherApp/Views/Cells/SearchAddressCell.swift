@@ -11,7 +11,6 @@ struct SearchAddressCell: View {
     @State var isShowingWeatherSheetView :Bool = false
     let address: AddressResult
     
-
     var body: some View {
             Button {
                 isShowingWeatherSheetView = true
@@ -24,7 +23,8 @@ struct SearchAddressCell: View {
                 }
             }
             .sheet(isPresented: $isShowingWeatherSheetView){
-                WeatherDetailView(selectedAddress: address, isShowingWeatherSheetView: $isShowingWeatherSheetView)
+                let topEdge = UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0
+                WeatherDetailView(selectedAddress: address, topEdge: topEdge, isShowingWeatherSheetView: $isShowingWeatherSheetView)
             }
 
             

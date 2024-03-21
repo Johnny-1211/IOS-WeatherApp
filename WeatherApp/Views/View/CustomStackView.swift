@@ -44,7 +44,7 @@ struct CustomStackView<Title:View, Content:View>: View {
             .background(.ultraThinMaterial,in:
                             CustomConer(corners: [.bottomLeft,.bottomRight],
                                         radius: 12))
-            .offset(y:topOffset >= 120 ? 0 : -(-topOffset + 120))
+            .offset(y:topOffset >= 140 ? 0 : -(-topOffset + 140))
             .zIndex(0)
             .clipped()
             .opacity(getOpacity())
@@ -52,7 +52,7 @@ struct CustomStackView<Title:View, Content:View>: View {
         .colorScheme(.dark)
         .cornerRadius(12)
         .opacity(getOpacity())
-        .offset(y:topOffset >= 120 ? 0 : -topOffset + 120)
+        .offset(y:topOffset >= 140 ? 0 : -topOffset + 140)
         .background(
             
             GeometryReader{ proxy -> Color in
@@ -62,7 +62,7 @@ struct CustomStackView<Title:View, Content:View>: View {
 
                 DispatchQueue.main.async{
                     self.topOffset = minY
-                    self.bottomOffset = maxY - 120
+                    self.bottomOffset = maxY - 140
                 }
                 return Color.clear
             }
