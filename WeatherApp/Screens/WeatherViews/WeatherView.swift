@@ -19,52 +19,59 @@ struct WeatherView: View {
     @EnvironmentObject var city:City
     @State var isShowingMap = false
     @State private var currentWeatherCondition = ""
-    
+    @Binding var selectedTabIndex : Int
+
     
     var body: some View {
         ZStack(alignment:.bottom){
             
             GeometryReader{ proxy in
-                switch selectedWeather.currentConditions.conditions{
+                switch currentWeatherCondition{
                 case "Rain","Partially cloudy" , "Overcast":
                     Image("rainSky")
                         .resizable()
+                        .ignoresSafeArea()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: proxy.size.width, height: proxy.size.height)
                 case "Clear":
-                    if selectedWeather.currentConditions.datetime > "17:00:00"{
+                    if selectedWeather.currentConditions.datetime > "17:00:00" &&
+                        selectedWeather.currentConditions.datetime < "24:00:00"{
                         Image("nightSky")
                             .resizable()
+                            .ignoresSafeArea()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: proxy.size.width, height: proxy.size.height)
                     }else{
                         Image("sunSky")
                             .resizable()
+                            .ignoresSafeArea()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: proxy.size.width, height: proxy.size.height)
                     }
                 default:
                     Image("nightSky")
                         .resizable()
+                        .ignoresSafeArea()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: proxy.size.width, height: proxy.size.height)
                 }
             }
             .ignoresSafeArea()
             
-            if currentWeatherCondition.contains("Rain"){
+            
+            if selectedWeather.currentConditions.conditions.contains("Rain"){
                 GeometryReader{_ in
                     SpriteView(scene: RainFall(), options: [.allowsTransparency])
                         .ignoresSafeArea()
                 }
-            }else if currentWeatherCondition.contains("Snow"){
+            }else if selectedWeather.currentConditions.conditions.contains("Snow"){
                 GeometryReader{_ in
-                    SpriteView(scene: SnowFall(), options: [.allowsTransparency])
+                    SpriteView(scene: RainFall(), options: [.allowsTransparency])
                         .ignoresSafeArea()
-                }   
+                }
             }
-                
-                WeatherTabView(city: city, currentWeatherCondition: $currentWeatherCondition)
+
+            WeatherTabView(city: city, selectedTabIndex: $selectedTabIndex, currentWeatherCondition: $currentWeatherCondition)
                 
                 VStack{
                     Spacer()
