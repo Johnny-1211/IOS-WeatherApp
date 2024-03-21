@@ -64,11 +64,4 @@ struct HourlyScrollView: View {
 }
 
 
-#Preview {
-    ZStack{
-        Color.blue
-            .ignoresSafeArea()
-        HourlyScrollView(weather: MockData.sampleWeather)
-    }
-}
 

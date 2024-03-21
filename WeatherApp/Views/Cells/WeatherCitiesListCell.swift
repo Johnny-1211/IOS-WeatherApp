@@ -38,6 +38,30 @@ struct WeatherCitiesListCell: View {
                 .padding(.bottom, 15)
             }
         }
+        .listRowBackground(self.background(for: city.currentConditions.conditions))
+    }
+    
+    func background(for conditions: String) -> some View {
+        switch conditions {
+        case "Rain","Partially cloudy" , "Overcast":
+            return Image("rainSky")
+                .resizable()
+                .scaledToFill()
+        case "Clear":
+            if city.currentConditions.datetime > "17:00:00"{
+                return Image("rainSky")
+                    .resizable()
+                    .scaledToFill()
+            }else{
+                return Image("sunSky")
+                    .resizable()
+                    .scaledToFill()
+            }
+        default:
+            return Image("rainSky")
+                .resizable()
+                .scaledToFill()
+        }
     }
     
 }

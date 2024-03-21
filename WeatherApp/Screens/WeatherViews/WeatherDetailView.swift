@@ -20,7 +20,6 @@ struct WeatherDetailView: View {
             Color.blue
                 .ignoresSafeArea()
 
-            
             VStack {
                 if isShowingWeatherSheetView{
                     HStack{

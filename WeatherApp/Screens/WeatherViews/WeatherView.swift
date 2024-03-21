@@ -18,45 +18,73 @@ struct WeatherView: View {
     @StateObject var weatherViewModel = WeatherViewModel()
     @EnvironmentObject var city:City
     @State var isShowingMap = false
-    
+    @State private var currentWeatherCondition = ""
     
     
     var body: some View {
         ZStack(alignment:.bottom){
             
             GeometryReader{ proxy in
-                Image("rainSky")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: proxy.size.width, height: proxy.size.height)
+                switch selectedWeather.currentConditions.conditions{
+                case "Rain","Partially cloudy" , "Overcast":
+                    Image("rainSky")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: proxy.size.width, height: proxy.size.height)
+                case "Clear":
+                    if selectedWeather.currentConditions.datetime > "17:00:00"{
+                        Image("nightSky")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: proxy.size.width, height: proxy.size.height)
+                    }else{
+                        Image("sunSky")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: proxy.size.width, height: proxy.size.height)
+                    }
+                default:
+                    Image("nightSky")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: proxy.size.width, height: proxy.size.height)
+                }
             }
             .ignoresSafeArea()
-            .overlay(.ultraThinMaterial)
             
-            GeometryReader{_ in
-                SpriteView(scene: RainFall(), options: [.allowsTransparency])
+            if currentWeatherCondition.contains("Rain"){
+                GeometryReader{_ in
+                    SpriteView(scene: RainFall(), options: [.allowsTransparency])
+                        .ignoresSafeArea()
+                }
+            }else if currentWeatherCondition.contains("Snow"){
+                GeometryReader{_ in
+                    SpriteView(scene: SnowFall(), options: [.allowsTransparency])
+                        .ignoresSafeArea()
+                }   
             }
-            .ignoresSafeArea()
-            
-            WeatherTabView(city: city)
-                    
-            VStack{
-                Spacer()
-                ControlBar(isShowingMap: $isShowingMap)
-                    .padding()
-                    .background(Color(UIColor.systemBackground))
-//                    .ignoresSafeArea(edges: .horizontal)
-                Spacer()
-                    .frame(height: 2)
+                
+                WeatherTabView(city: city, currentWeatherCondition: $currentWeatherCondition)
+                
+                VStack{
+                    Spacer()
+                    ControlBar(isShowingMap: $isShowingMap)
+                        .padding()
+                        .background(Color(UIColor.systemBackground))
+                    Spacer()
+                        .frame(height: 2)
+                }
             }
-        }
-        .padding(.horizontal)
-        .navigationBarBackButtonHidden(true)
-        .ignoresSafeArea(edges: .bottom)
-        .alert(item: $weatherViewModel.alertItem) { alertItem in
-            Alert(title: alertItem.title,
-                  message: alertItem.message,
-                  dismissButton: alertItem.dismissButton)
+                .padding(.horizontal)
+                .navigationBarBackButtonHidden(true)
+                .ignoresSafeArea(edges: .bottom)
+                .alert(item: $weatherViewModel.alertItem) { alertItem in
+                    Alert(title: alertItem.title,
+                          message: alertItem.message,
+                          dismissButton: alertItem.dismissButton)
+                }
+                .onAppear{
+                    currentWeatherCondition = selectedWeather.currentConditions.conditions
+                }
         }
     }
-}

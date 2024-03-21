@@ -9,6 +9,7 @@ import Foundation
 
 
 struct CurrentConditions:Codable, Hashable{
+    let datetime:String
     let temp:Double
     let feelslike:Double
     let humidity:Double

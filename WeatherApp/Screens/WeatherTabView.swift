@@ -9,21 +9,22 @@ import SwiftUI
 
 struct WeatherTabView: View {
     let city : City
+    @State private var selectedTabIndex = 0
+    @Binding var currentWeatherCondition: String
     
     var body: some View {
-        
-        TabView{
-            GeometryReader{ proxy in
-                let topEdge = proxy.safeAreaInsets.top
-                ForEach(city.cities, id: \.self){ city in
-                    ScrollingWeatherView(topEdge: topEdge,selectedWeather: city)
+        TabView(selection:$selectedTabIndex){
+            ForEach(city.cities.indices, id: \.self){ index in
+                let topEdge = UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0
+                ScrollingWeatherView(topEdge: topEdge, selectedWeather: city.cities[index])
+                    .tag(index)
                 }
-            }
         }
-        .frame(
-            width: UIScreen.main.bounds.width
-        )
+        .frame(width: UIScreen.main.bounds.width)
         .tabViewStyle(.page(indexDisplayMode: .always))
+        .onChange(of: selectedTabIndex) { newValue in
+            currentWeatherCondition = city.cities[newValue].currentConditions.conditions
+        }
         
     }
     
