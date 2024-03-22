@@ -13,19 +13,17 @@ struct WeatherTabView: View {
     @Binding var currentWeatherCondition: String
     
     var body: some View {
-            TabView(selection:$selectedTabIndex){
-                ForEach(city.cities.indices, id: \.self){ index in
-                    let topEdge = UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0
-                    ScrollingWeatherView(topEdge: topEdge, selectedWeather: city.cities[index])
-                        .tag(index)
-                }
+        TabView(selection:$selectedTabIndex){
+            ForEach(city.cities.indices, id: \.self){ index in
+                let topEdge = UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0
+                ScrollingWeatherView(topEdge: topEdge, selectedWeather: city.cities[index])
+                    .tag(index)
             }
-            .ignoresSafeArea()
-            .frame(width: UIScreen.main.bounds.width)
-            .tabViewStyle(.page(indexDisplayMode: .always))
-            .onChange(of: selectedTabIndex) { newValue in
-                currentWeatherCondition = city.cities[newValue].currentConditions.conditions
-            }
+        }
+        .frame(width: UIScreen.main.bounds.width)
+        .tabViewStyle(.page(indexDisplayMode: .always))
     }
+    
+
     
 }

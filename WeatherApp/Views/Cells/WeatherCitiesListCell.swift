@@ -38,32 +38,41 @@ struct WeatherCitiesListCell: View {
                 .padding(.bottom, 15)
             }
         }
-        .listRowBackground(self.background(for: city.currentConditions.conditions))
+        .listRowBackground(self.background(for:city))
     }
     
-    func background(for conditions: String) -> some View {
-        switch conditions {
-        case "Rain","Partially cloudy" , "Overcast":
-            return Image("rainSky")
-                .resizable()
-                .scaledToFill()
-        case "Clear":
-            if city.currentConditions.datetime > "17:00:00"{
-                return Image("rainSky")
+    func background(for weather: Weather) -> some View {
+        
+        let dateFormatter = DateFormatter()
+        let currentDate = Date()
+
+        dateFormatter.dateFormat = "HH:mm:ss"
+        dateFormatter.timeZone = TimeZone(identifier: "\(weather.timezone)")
+        
+        if let date = dateFormatter.date(from: weather.currentConditions.datetime) {
+            var calendar = Calendar(identifier: .gregorian)
+            calendar.timeZone = dateFormatter.timeZone!
+
+            let components = calendar.dateComponents([.hour, .minute, .second], from: currentDate)
+            print(components)
+            
+            let hour = calendar.component(.hour, from: date)
+            
+            if hour >= 17 || hour < 6 {
+                return Image("nightSky")
                     .resizable()
                     .scaledToFill()
-            }else{
+            } else {
                 return Image("sunSky")
                     .resizable()
                     .scaledToFill()
             }
-        default:
-            return Image("rainSky")
+        }else{
+            return Image("sunSky")
                 .resizable()
                 .scaledToFill()
         }
     }
-    
 }
 
 

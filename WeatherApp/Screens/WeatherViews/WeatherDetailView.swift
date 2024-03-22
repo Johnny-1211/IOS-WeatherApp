@@ -21,27 +21,35 @@ struct WeatherDetailView: View {
         ZStack{
             if let selectedWeather = weatherViewModel.weather{
                 GeometryReader{ proxy in
-                    switch selectedWeather.currentConditions.conditions{
-                    case "Rain","Partially cloudy" , "Overcast":
-                        Image("rainSky")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: proxy.size.width, height: proxy.size.height)
-                    case "Clear":
-                        if selectedWeather.currentConditions.datetime > "17:00:00"{
-                            Image("nightSky")
+                    
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "HH:mm:ss"
+                    dateFormatter.timeZone = TimeZone(identifier: "\(selectedWeather.timezone)")
+
+                    
+                    if let date = dateFormatter.date(from: selectedWeather.currentConditions.datetime) {
+                        var calendar = Calendar(identifier: .gregorian)
+                        calendar.timeZone = dateFormatter.timeZone!
+                        
+                        let hour = calendar.component(.hour, from: date)
+                        
+                        if hour >= 17 || hour < 6 {
+                            return Image("nightSky")
                                 .resizable()
+                                .ignoresSafeArea()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: proxy.size.width, height: proxy.size.height)
-                        }else{
-                            Image("sunSky")
+                        } else {
+                            return Image("sunSky")
                                 .resizable()
+                                .ignoresSafeArea()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: proxy.size.width, height: proxy.size.height)
                         }
-                    default:
-                        Image("nightSky")
+                    }else{
+                        return Image("sunSky")
                             .resizable()
+                            .ignoresSafeArea()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: proxy.size.width, height: proxy.size.height)
                     }

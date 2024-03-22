@@ -16,20 +16,25 @@ struct CityListView: View {
     @EnvironmentObject var city: City
     
     @State private var countryName = ""
+    @State private var selectedTabIndex = 0
+    @State private var selectedNavLink: Int?
+
     
     var body: some View {
         NavigationStack{
             VStack{
                 List{
-                    ForEach(city.cities, id: \.self){ city in
-                        WeatherCitiesListCell(city: city)
+                    ForEach(city.cities.indices, id: \.self){ index in
+                        WeatherCitiesListCell(city: city.cities[index])
                             .background(
-                                NavigationLink("",destination: WeatherView(selectedWeather: city))
+                                NavigationLink("",destination: WeatherView(selectedWeather: city.cities[index], selectedTabIndex: $selectedTabIndex), tag: index, selection: $selectedNavLink)
                                     .opacity(0)
+                                    
                             )
+                            .tag(index)
                     }
                 }
-                .listRowSpacing(10)
+                .listRowSpacing(8)
                 .navigationTitle("Weather")
                 .searchable(text: $cityListViewModel.searchableText, prompt: Text("Search address")){}
                 .onChange(of: cityListViewModel.searchableText) { searchText in
