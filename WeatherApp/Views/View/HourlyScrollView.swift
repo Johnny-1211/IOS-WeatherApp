@@ -80,6 +80,8 @@ struct HourlyScrollView: View {
                     return Image(systemName: "smoke.fill")
                 }else if hoursWeather.conditions.contains("Snow"){
                     return Image(systemName: "snowflake")
+                }else if hoursWeather.conditions.contains("Rain"){
+                    return Image(systemName: "cloud.fill")
                 }
             } else {
                 if hoursWeather.conditions.contains("Clear"){
@@ -90,6 +92,8 @@ struct HourlyScrollView: View {
                     return Image(systemName: "smoke.fill")
                 }else if hoursWeather.conditions.contains("Snow"){
                     return Image(systemName: "sun.snow.fill")
+                }else if hoursWeather.conditions.contains("Rain"){
+                    return Image(systemName: "cloud.fill")
                 }
             }
         }

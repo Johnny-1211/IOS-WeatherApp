@@ -36,11 +36,14 @@ struct DayForecast: View {
                             .frame(width: 60, alignment: .leading)
                             
                             HStack{
-                                Image(systemName: "sun.max")
+                                
+                                weatherImage(for: day)
                                     .font(.title3)
                                     .symbolVariant(.fill)
                                     .symbolRenderingMode(.palette)
                                     .frame(width: 30)
+//                                Image(systemName: "sun.max")
+                                    
                                 Spacer()
                                 
                                 Text("\(day.tempmin, specifier: "%.0f")º")
@@ -57,7 +60,7 @@ struct DayForecast: View {
                                 ProgressView(value: min(max(day.tempmin,0) ,40), total: 40)
                                     .progressViewStyle(LinearProgressViewStyle())
                                     .frame(width: 100)
-
+                                
                                 
                                 Spacer()
                                 
@@ -88,6 +91,24 @@ struct DayForecast: View {
         
         return nil
     }
+    
+    func weatherImage(for daysWeather: DaysWeather) -> Image{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        
+        if daysWeather.conditions.contains("Clear"){
+            return Image(systemName: "sun.max.fill")
+        } else if daysWeather.conditions.contains("cloudly"){
+            return Image(systemName: "cloud.fill")
+        }else if daysWeather.conditions.contains("Overcast"){
+            return Image(systemName: "smoke.fill")
+        }else if daysWeather.conditions.contains("Snow"){
+            return Image(systemName: "snowflake")
+        }
+        return Image(systemName: "cloud.fill")
+    }
+    
+    
 }
 
 
