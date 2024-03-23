@@ -34,7 +34,7 @@ struct CityListView: View {
                             .tag(index)
                     }
                 }
-                .listRowSpacing(8)
+                .listRowSpacing(4)
                 .navigationTitle("Weather")
                 .searchable(text: $cityListViewModel.searchableText, prompt: Text("Search address")){}
                 .onChange(of: cityListViewModel.searchableText) { searchText in

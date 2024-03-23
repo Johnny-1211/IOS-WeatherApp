@@ -29,7 +29,7 @@ struct HourlyScrollView: View {
                                     .foregroundColor(.white)
                                     .fontWeight(.bold)
                                 
-                                Image(systemName: "cloud.sun.fill")
+                                weatherImage(for: hours)
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 30)
@@ -49,19 +49,54 @@ struct HourlyScrollView: View {
             }
         }
     }
-
+    
     func formattedTime(from timeString: String) -> String {
-           let dateFormatter = DateFormatter()
-           dateFormatter.dateFormat = "HH:mm:ss"
-           
-           guard let date = dateFormatter.date(from: timeString) else {
-               return "Invalid time format"
-           }
-           
-           dateFormatter.dateFormat = "h a"
-           return dateFormatter.string(from: date)
-       }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        
+        guard let date = dateFormatter.date(from: timeString) else {
+            return "Invalid time format"
+        }
+        
+        dateFormatter.dateFormat = "h a"
+        return dateFormatter.string(from: date)
+    }
+    
+    func weatherImage(for hoursWeather: HoursWeather) -> Image{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        
+        if let date = dateFormatter.date(from: hoursWeather.datetime) {
+            var calendar = Calendar(identifier: .gregorian)
+            calendar.timeZone = dateFormatter.timeZone!
+            
+            let hour = calendar.component(.hour, from: date)
+            if hour >= 18 || hour < 6 {
+                if hoursWeather.conditions.contains("Clear"){
+                    return Image(systemName: "moon.stars.fill")
+                } else if hoursWeather.conditions.contains("cloudly"){
+                    return Image(systemName: "cloud.moon.fill")
+                }else if hoursWeather.conditions.contains("Overcast"){
+                    return Image(systemName: "smoke.fill")
+                }else if hoursWeather.conditions.contains("Snow"){
+                    return Image(systemName: "snowflake")
+                }
+            } else {
+                if hoursWeather.conditions.contains("Clear"){
+                    return Image(systemName: "sun.max.fill")
+                } else if hoursWeather.conditions.contains("cloudly"){
+                    return Image(systemName: "cloud.sun.fill")
+                }else if hoursWeather.conditions.contains("Overcast"){
+                    return Image(systemName: "smoke.fill")
+                }else if hoursWeather.conditions.contains("Snow"){
+                    return Image(systemName: "sun.snow.fill")
+                }
+            }
+        }
+        return Image("sunSky")
+    }
+    
 }
-
-
-
+    
+    
+    

@@ -44,7 +44,8 @@ struct DayForecast: View {
                                 Spacer()
                                 
                                 Text("\(day.tempmin, specifier: "%.0f")º")
-                                    .font(.title3.bold())
+                                    .font(.title3)
+                                    .fontWeight(.semibold)
                                     .foregroundStyle(.secondary)
                                     .foregroundStyle(.white)
                                 
@@ -61,7 +62,8 @@ struct DayForecast: View {
                                 Spacer()
                                 
                                 Text("\(day.tempmax, specifier: "%.0f")º")
-                                    .font(.title3.bold())
+                                    .font(.title3)
+                                    .fontWeight(.semibold)
                                     .foregroundStyle(.white)
                             }
                             .frame(width: 140)
