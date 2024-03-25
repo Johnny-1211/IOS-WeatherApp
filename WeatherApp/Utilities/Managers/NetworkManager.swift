@@ -15,6 +15,10 @@ final class NetworkManager{
     var lng: Double = 0.0
     private var weatherURL: String {  return "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/\(lat)%2C\(lng)?unitGroup=metric&key=\(API_KEY)&include=obs%2Cfcst%2Chours%2Ccurrent"
     }
+
+    private var weatherMapURL : String { return
+        "https://maps.openweathermap.org/maps/2.0/weather/1h/TA2/{x}/{y}/{z}?appid={API_KEY}"
+    }
     
     private init() {}
   
@@ -35,5 +39,16 @@ final class NetworkManager{
             throw WTError.invalidData
         }
     }
+    
+    func getWeatherMap() async throws -> Data {
+        guard let url = URL(string: weatherMapURL) else {
+            throw WTError.invalidURL
+        }
+        
+        let (data, _) = try await URLSession.shared.data(from: url)
+
+        return data
+    }
+    
 }
 
