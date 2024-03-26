@@ -3,7 +3,7 @@ import UIKit
 final class NetworkManager{
 
     static let shared = NetworkManager()
-    let API_KEY = "API_KEY"
+    let API_KEY = "RUBWT6MY6R7DZ3D9JMZGFTXKY"
     var lat: Double = 0.0
     var lng: Double = 0.0
     private var weatherURL: String {  return "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/\(lat)%2C\(lng)?unitGroup=metric&key=\(API_KEY)&include=obs%2Cfcst%2Chours%2Ccurrent"

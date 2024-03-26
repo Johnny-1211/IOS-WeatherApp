@@ -41,7 +41,7 @@ struct CityListView: View {
                     if !cityListViewModel.searchableText.isEmpty{
                         VStack{
                             List(self.cityListViewModel.results) { address in
-                                SearchAddressCell(address: address )
+                                SearchAddressCell(address: address , backgroundImage: $backgroundImage)
                             }
                             .listStyle(.plain)
                             .scrollContentBackground(.hidden)

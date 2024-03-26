@@ -9,13 +9,15 @@ struct WeatherDetailView: View {
     @EnvironmentObject var locationHelper: LocationHelper
     @ObservedObject var weatherViewModel = WeatherViewModel()
     @EnvironmentObject var city: City
+    @Binding var backgroundImage :String
+
     
     var body: some View {
         ZStack{
             if let selectedWeather = weatherViewModel.weather{
                 GeometryReader{ proxy in
                     
-                    self.backgroundImage(selectedWeather: selectedWeather)
+                    Image(backgroundImage)
                         .resizable()
                         .ignoresSafeArea()
                         .aspectRatio(contentMode: .fill)
@@ -108,27 +110,27 @@ struct WeatherDetailView: View {
         return 0
     }
     
-    func backgroundImage(selectedWeather:Weather) -> Image{
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(identifier: "\(selectedWeather.timezone)")
-
-        
-        if let date = dateFormatter.date(from: selectedWeather.currentConditions.datetime) {
-            var calendar = Calendar(identifier: .gregorian)
-            calendar.timeZone = dateFormatter.timeZone!
-            
-            let hour = calendar.component(.hour, from: date)
-            
-            if hour >= 17 || hour < 6 {
-                return Image("nightSky")
-            } else {
-                return Image("sunSky")
-            }
-        }else{
-            return Image("sunSky")
-        }
-    }
+//    func backgroundImage(selectedWeather:Weather) -> Image{
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "HH:mm:ss"
+//        dateFormatter.timeZone = TimeZone(identifier: "\(selectedWeather.timezone)")
+//
+//        
+//        if let date = dateFormatter.date(from: selectedWeather.currentConditions.datetime) {
+//            var calendar = Calendar(identifier: .gregorian)
+//            calendar.timeZone = dateFormatter.timeZone!
+//            
+//            let hour = calendar.component(.hour, from: date)
+//            
+//            if hour >= 17 || hour < 6 {
+//                return Image("nightSky")
+//            } else {
+//                return Image("sunSky")
+//            }
+//        }else{
+//            return Image("sunSky")
+//        }
+//    }
     
 }
 

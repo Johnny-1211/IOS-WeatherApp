@@ -48,21 +48,36 @@ struct WeatherCitiesListCell: View {
             calendar.timeZone = dateFormatter.timeZone!
             
             let hour = calendar.component(.hour, from: date)
-            
+            let currentWeatherCondition = weather.currentConditions.conditions.lowercased()
             if hour >= 17 || hour < 6 {
-                backgroundImage = "nightSky"
-                return Image("nightSky")
-                    .resizable()
-                    .scaledToFill()
+                if currentWeatherCondition.hasPrefix("overcast") || currentWeatherCondition.hasPrefix("cloudy"){
+                    backgroundImage = "overcast"
+                    return Image("overcast")
+                        .resizable()
+                        .scaledToFill()
+                }else{
+                    backgroundImage = "nightSky"
+                    return Image("nightSky")
+                        .resizable()
+                        .scaledToFill()
+                }
+                
             } else {
-                backgroundImage = "sunSky"
-                return Image("sunSky")
-                    .resizable()
-                    .scaledToFill()
+                if currentWeatherCondition.hasPrefix("overcast") || currentWeatherCondition.hasPrefix("cloudy"){
+                    backgroundImage = "overcast"
+                    return Image("overcast")
+                        .resizable()
+                        .scaledToFill()
+                }else{
+                    backgroundImage = "sunSky"
+                    return Image("sunSky")
+                        .resizable()
+                        .scaledToFill()
+                }
             }
         }else{
-            backgroundImage = "sunSky"
-            return Image("sunSky")
+            backgroundImage = "overcast"
+            return Image("overcast")
                 .resizable()
                 .scaledToFill()
         }
