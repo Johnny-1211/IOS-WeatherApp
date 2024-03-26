@@ -1,9 +1,4 @@
-//
-//  CityListView.swift
-//  WeatherApp
-//
-//  Created by Johnny Tam on 9/3/2024.
-//
+
 
 import SwiftUI
 import CoreLocation
@@ -11,7 +6,6 @@ import CoreLocation
 struct CityListView: View {
     @StateObject var cityListViewModel = CityListViewModel()
     @StateObject var weatherViewModel = WeatherViewModel()
-//    @EnvironmentObject var locationSearch: LocationSearchService
     @EnvironmentObject var locationHelper: LocationHelper
     @EnvironmentObject var city: City
     
@@ -39,7 +33,7 @@ struct CityListView: View {
                     })
                 }
                 .navigationTitle("Weather")
-                .searchable(text: $cityListViewModel.searchableText, prompt: Text("Search address")){}
+                .searchable(text: $cityListViewModel.searchableText, placement: .navigationBarDrawer(displayMode: .always),prompt: Text("Search address")){}
                 .onChange(of: cityListViewModel.searchableText) { searchText in
                     cityListViewModel.searchAddress(searchText)
                 }

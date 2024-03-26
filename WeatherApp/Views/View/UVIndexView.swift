@@ -1,10 +1,3 @@
-//
-//  UVIndexView.swift
-//  WeatherApp
-//
-//  Created by Johnny Tam on 6/3/2024.
-//
-
 import SwiftUI
 
 struct UVIndexView: View {

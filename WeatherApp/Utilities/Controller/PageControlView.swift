@@ -1,10 +1,3 @@
-//
-//  PageControlView.swift
-//  WeatherApp
-//
-//  Created by Johnny Tam on 26/3/2024.
-//
-
 import Foundation
 import SwiftUI
 

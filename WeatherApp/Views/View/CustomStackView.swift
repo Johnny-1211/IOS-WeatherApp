@@ -1,10 +1,3 @@
-//
-//  CustomStackView.swift
-//  WeatherApp
-//
-//  Created by Johnny Tam on 18/3/2024.
-//
-
 import SwiftUI
 
 struct CustomStackView<Title:View, Content:View>: View {

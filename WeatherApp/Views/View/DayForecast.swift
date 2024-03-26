@@ -1,10 +1,3 @@
-//
-//  DayForecast.swift
-//  WeatherApp
-//
-//  Created by Johnny Tam on 3/3/2024.
-//
-
 import SwiftUI
 
 struct DayForecast: View {
@@ -58,7 +51,7 @@ struct DayForecast: View {
                                 
                                 ProgressView(value: min(max(day.tempmin,0) ,40), total: 40)
                                     .progressViewStyle(LinearProgressViewStyle())
-                                    .frame(width: 100)
+                                    .frame(width: 90)
                                 
                                 
                                 Spacer()

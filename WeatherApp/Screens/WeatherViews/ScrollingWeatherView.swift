@@ -1,9 +1,3 @@
-//
-//  ScrollingWeatherView.swift
-//  WeatherApp
-//
-//  Created by Johnny Tam on 17/3/2024.
-//
 
 import SwiftUI
 import SpriteKit

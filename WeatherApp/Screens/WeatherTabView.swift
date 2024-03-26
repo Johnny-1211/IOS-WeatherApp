@@ -1,10 +1,3 @@
-//
-//  WeatherTabView.swift
-//  WeatherApp
-//
-//  Created by Johnny Tam on 17/3/2024.
-//
-
 import SwiftUI
 
 struct WeatherTabView: View {

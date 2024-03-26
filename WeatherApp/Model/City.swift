@@ -1,10 +1,3 @@
-//
-//  City.swift
-//  WeatherApp
-//
-//  Created by Johnny Tam on 16/3/2024.
-//
-
 import SwiftUI
 
 final class City: ObservableObject {

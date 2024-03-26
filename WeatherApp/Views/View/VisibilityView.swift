@@ -1,10 +1,3 @@
-//
-//  VisibilityView.swift
-//  WeatherApp
-//
-//  Created by Johnny Tam on 7/3/2024.
-//
-
 import SwiftUI
 
 struct VisibilityView: View {

@@ -1,10 +1,3 @@
-//
-//  WeatherCitiesListCell.swift
-//  WeatherApp
-//
-//  Created by Johnny Tam on 15/3/2024.
-//
-
 import SwiftUI
 import SpriteKit
 

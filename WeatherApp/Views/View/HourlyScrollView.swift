@@ -1,10 +1,3 @@
-//
-//  HourlyScrollView.swift
-//  WeatherApp
-//
-//  Created by Johnny Tam on 3/3/2024.
-//
-
 import SwiftUI
 
 struct HourlyScrollView: View {
@@ -32,7 +25,7 @@ struct HourlyScrollView: View {
                                 weatherImage(for: hours)
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 30)
+                                    .frame(width: 30,height: 30)
                                     .font(.title2)
                                 
                                 Text("\(hours.temp, specifier: "%.0f")º")

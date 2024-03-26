@@ -1,9 +1,3 @@
-//
-//  WeatherDetailView.swift
-//  WeatherApp
-//
-//  Created by Johnny Tam on 15/3/2024.
-//
 
 import SwiftUI
 
@@ -29,40 +23,15 @@ struct WeatherDetailView: View {
 
                 }
                 .ignoresSafeArea()
-            }
+            
             
             if isShowingWeatherSheetView{
-                if let selectedWeather = weatherViewModel.weather{
                     
                     VStack{
                         HStack{
-                            Button{
-                                withAnimation{
-                                    isShowingWeatherSheetView = false
-                                }
-                            }label: {
-                                Text("Cancel")
-                                    .foregroundColor(.white)
-                                    .fontWeight(.bold)
-                                    .frame(width: 60, height: 60)
-                            }
-                            
+                            CancelBtn()
                             Spacer()
-                            
-                            Button{
-                                if let weather = weatherViewModel.weather{
-                                    city.add(weather)
-                                    saveItemsToUserDefaults(weather: city.cities)
-                                    isShowingWeatherSheetView = false
-                                }else{
-                                    print("weather cannot be added")
-                                }
-                            }label: {
-                                Text("Add")
-                                    .foregroundColor(.white)
-                                    .fontWeight(.bold)
-                                    .frame(width: 60, height: 60)
-                            }
+                            SaveBtn(weather: selectedWeather)
                         }
                         .padding(.horizontal)
                         
@@ -137,16 +106,6 @@ struct WeatherDetailView: View {
             return -newOffset
         }
         return 0
-    }
-    
-    func saveItemsToUserDefaults(weather: [Weather]) {
-        do {
-            let encoder = JSONEncoder()
-            let data = try encoder.encode(weather)
-            UserDefaults.standard.set(data, forKey: "weatherList")
-        } catch {
-            print("Error encoding items: \(error)")
-        }
     }
     
     func backgroundImage(selectedWeather:Weather) -> Image{
