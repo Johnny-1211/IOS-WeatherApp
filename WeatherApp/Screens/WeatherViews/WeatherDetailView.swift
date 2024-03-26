@@ -78,6 +78,7 @@ struct WeatherDetailView: View {
                             Button{
                                 if let weather = weatherViewModel.weather{
                                     city.add(weather)
+                                    isShowingWeatherSheetView = false
                                 }else{
                                     print("weather cannot be added")
                                 }
@@ -102,7 +103,6 @@ struct WeatherDetailView: View {
                                     UVIndexView(weather: selectedWeather)
                                     FeelLikeView(weather: selectedWeather)
                                 }
-                                
                                 HStack{
                                     VisibilityView(weather: selectedWeather)
                                     HumidityView(weather: selectedWeather)

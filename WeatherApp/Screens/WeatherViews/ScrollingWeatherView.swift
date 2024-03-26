@@ -11,6 +11,8 @@ import SpriteKit
 struct ScrollingWeatherView: View {
     
     @State var offset:CGFloat = 0
+    @Environment(\.presentationMode) var presentationMode
+
     var topEdge:CGFloat
     let selectedWeather : Weather
     

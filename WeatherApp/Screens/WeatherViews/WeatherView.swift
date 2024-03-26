@@ -20,7 +20,11 @@ struct WeatherView: View {
     @State var isShowingMap = false
     @State private var currentWeatherCondition = ""
     @Binding var selectedTabIndex : Int
-        
+    @Environment(\.presentationMode) var presentationMode
+    
+
+    
+
     var body: some View {
         ZStack(alignment:.bottom){
             
@@ -46,19 +50,10 @@ struct WeatherView: View {
                 }
             }
             
-            WeatherTabView(city: city, selectedTabIndex: $selectedTabIndex, currentWeatherCondition: $currentWeatherCondition)
+            WeatherTabView(city: city, selectedTabIndex: $selectedTabIndex, currentWeatherCondition: $currentWeatherCondition, isShowingMap: $isShowingMap)
                 .onChange(of: selectedTabIndex) { newIndex in
                     currentWeatherCondition = city.cities[newIndex].currentConditions.conditions
                 }
-            
-            VStack{
-                Spacer()
-                ControlBar(isShowingMap: $isShowingMap)
-                    .padding()
-                    .background(Color(UIColor.systemBackground))
-                Spacer()
-                    .frame(height: 2)
-            }
         }
         .padding(.horizontal)
         .navigationBarBackButtonHidden(true)

@@ -97,7 +97,7 @@ struct HourlyScrollView: View {
                 }
             }
         }
-        return Image("sunSky")
+        return Image(systemName: "sun.max.fill")
     }
     
 }

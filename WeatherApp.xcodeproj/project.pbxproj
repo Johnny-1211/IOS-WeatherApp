@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B21606A72BB27FF900E83718 /* PageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21606A62BB27FF900E83718 /* PageControlView.swift */; };
 		B22482042B94F05900EB8C38 /* WeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22482032B94F05900EB8C38 /* WeatherApp.swift */; };
 		B22482062B94F05900EB8C38 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22482052B94F05900EB8C38 /* WeatherView.swift */; };
 		B22482082B94F05B00EB8C38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B22482072B94F05B00EB8C38 /* Assets.xcassets */; };
@@ -69,6 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B21606A62BB27FF900E83718 /* PageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControlView.swift; sourceTree = "<group>"; };
 		B22482002B94F05900EB8C38 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B22482032B94F05900EB8C38 /* WeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApp.swift; sourceTree = "<group>"; };
 		B22482052B94F05900EB8C38 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
@@ -141,6 +143,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B21606A52BB27FE200E83718 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B21606A62BB27FF900E83718 /* PageControlView.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		B22481F72B94F05900EB8C38 = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +271,7 @@
 		B250E20C2B96963C009D58A6 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				B21606A52BB27FE200E83718 /* Controller */,
 				B2F175B52B9EB60E0071E1AB /* Services */,
 				B250E2192B96A1F8009D58A6 /* Alerts */,
 				B250E20D2B96964E009D58A6 /* Managers */,
@@ -493,6 +504,7 @@
 				B250E20F2B969663009D58A6 /* NetworkManager.swift in Sources */,
 				B250E2142B96989C009D58A6 /* Weather.swift in Sources */,
 				B2875FFB2BABC7C600292F31 /* SnowFall.swift in Sources */,
+				B21606A72BB27FF900E83718 /* PageControlView.swift in Sources */,
 				B250E21D2B96E134009D58A6 /* Alert.swift in Sources */,
 				B250E2162B969C21009D58A6 /* DaysWeather.swift in Sources */,
 				B250E2182B969D72009D58A6 /* HoursWeather.swift in Sources */,
