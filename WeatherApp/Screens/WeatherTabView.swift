@@ -30,16 +30,12 @@ struct WeatherTabView: View {
                 }label: {
                     Image(systemName: "map")
                 }
-                
                 Spacer()
-                
                     PageControlView(
                         currentPage: $selectedTabIndex,
                         numberOfPages: city.cities.count
                     )
-                
                 Spacer()
-            
                     Button{
                         self.presentationMode.wrappedValue.dismiss()
                     } label: {

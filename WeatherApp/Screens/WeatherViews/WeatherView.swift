@@ -18,25 +18,23 @@ struct WeatherView: View {
     @StateObject var weatherViewModel = WeatherViewModel()
     @EnvironmentObject var city:City
     @State var isShowingMap = false
-    @State private var currentWeatherCondition = ""
+    @State var currentWeatherCondition = ""
     @Binding var selectedTabIndex : Int
+    
+    @Binding var backgroundImage :String
     @Environment(\.presentationMode) var presentationMode
-    
-
-    
 
     var body: some View {
         ZStack(alignment:.bottom){
             
             GeometryReader{ proxy in
                 
-                Image("rainSky")
+                Image(backgroundImage)
                     .resizable()
                     .scaledToFill()
                     .frame(width: proxy.size.width, height: proxy.size.height)
             }
             .ignoresSafeArea()
-            .overlay(.ultraThinMaterial)
             
             if selectedWeather.currentConditions.conditions.contains("Rain"){
                 GeometryReader{_ in
@@ -57,7 +55,12 @@ struct WeatherView: View {
         }
         .padding(.horizontal)
         .navigationBarBackButtonHidden(true)
-        .ignoresSafeArea(edges: .bottom)
+        .safeAreaInset(edge: .bottom, content: {
+            Color.clear
+                .frame(height: 0)
+                .background(.bar)
+                .border(Color.black)
+        })
         .alert(item: $weatherViewModel.alertItem) { alertItem in
             Alert(title: alertItem.title,
                   message: alertItem.message,

@@ -12,7 +12,8 @@ struct WeatherCitiesListCell: View {
     let city: Weather
     @EnvironmentObject var locationHelper: LocationHelper
     @State private var countryName = ""
-    
+    @Binding var backgroundImage :String
+
     var body: some View {
         Section{
             VStack(alignment:. leading){
@@ -59,15 +60,18 @@ struct WeatherCitiesListCell: View {
             let hour = calendar.component(.hour, from: date)
             
             if hour >= 17 || hour < 6 {
+                backgroundImage = "nightSky"
                 return Image("nightSky")
                     .resizable()
                     .scaledToFill()
             } else {
+                backgroundImage = "sunSky"
                 return Image("sunSky")
                     .resizable()
                     .scaledToFill()
             }
         }else{
+            backgroundImage = "sunSky"
             return Image("sunSky")
                 .resizable()
                 .scaledToFill()

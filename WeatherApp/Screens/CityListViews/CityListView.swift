@@ -18,6 +18,7 @@ struct CityListView: View {
     @State private var countryName = ""
     @State private var selectedTabIndex = 0
     @State private var selectedNavLink: Int?
+    @State var backgroundImage = ""
 
     
     var body: some View {
@@ -25,9 +26,9 @@ struct CityListView: View {
             VStack{
                 List{
                     ForEach(city.cities.indices, id: \.self){ index in
-                        WeatherCitiesListCell(city: city.cities[index])
+                        WeatherCitiesListCell(city: city.cities[index], backgroundImage: $backgroundImage)
                             .background(
-                                NavigationLink("",destination: WeatherView(selectedWeather: city.cities[index], selectedTabIndex: $selectedTabIndex), tag: index, selection: $selectedNavLink)
+                                NavigationLink("",destination: WeatherView(selectedWeather: city.cities[index], selectedTabIndex: $selectedTabIndex, backgroundImage: $backgroundImage), tag: index, selection: $selectedNavLink)
                                     .opacity(0)
                                     
                             )
