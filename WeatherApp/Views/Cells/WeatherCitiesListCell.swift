@@ -19,11 +19,6 @@ struct WeatherCitiesListCell: View {
             VStack(alignment:. leading){
                 HStack{
                     Text(countryName.isEmpty ? "Loading..." : countryName)
-                        .onAppear{
-                            locationHelper.getCountryFromCoordinates(latitude: city.latitude, longitude: city.longitude) { country in
-                                countryName = country
-                            }
-                        }
                         .font(.system(size: 30))
                         .fontWeight(.bold)
                     Spacer()
@@ -37,6 +32,11 @@ struct WeatherCitiesListCell: View {
                     Text("L:\(city.days.first!.tempmin, specifier: "%.0f")º")
                 }
                 .padding(.bottom, 15)
+            }
+        }
+        .onAppear{
+            locationHelper.getCountryFromCoordinates(latitude: city.latitude, longitude: city.longitude) { country in
+                countryName = country
             }
         }
         .listRowBackground(self.background(for:city))
@@ -53,9 +53,6 @@ struct WeatherCitiesListCell: View {
         if let date = dateFormatter.date(from: weather.currentConditions.datetime) {
             var calendar = Calendar(identifier: .gregorian)
             calendar.timeZone = dateFormatter.timeZone!
-
-            let components = calendar.dateComponents([.hour, .minute, .second], from: currentDate)
-            print(components)
             
             let hour = calendar.component(.hour, from: date)
             

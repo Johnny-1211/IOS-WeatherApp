@@ -99,7 +99,7 @@ class LocationHelper: NSObject, ObservableObject, CLLocationManagerDelegate{
                 return
             }
 
-            if let country = placemark.country {
+            if let country = placemark.locality {
                 completion(country) // Pass the country name to the completion handler
             } else {
                 completion("") // Pass empty string if country name is not available

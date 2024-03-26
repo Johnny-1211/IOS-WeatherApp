@@ -11,7 +11,6 @@ import SwiftUI
 struct WeatherApp: App {
     
     let locationHelper = LocationHelper()
-    let locationSearch = LocationSearchService()
     var city = City()
 
     var body: some Scene {
@@ -19,7 +18,6 @@ struct WeatherApp: App {
             CityListView()
                 .environmentObject(city)
                 .environmentObject(locationHelper)
-                .environmentObject(locationSearch)
         }
     }
 }

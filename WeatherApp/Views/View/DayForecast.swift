@@ -42,7 +42,6 @@ struct DayForecast: View {
                                     .symbolVariant(.fill)
                                     .symbolRenderingMode(.palette)
                                     .frame(width: 30)
-//                                Image(systemName: "sun.max")
                                     
                                 Spacer()
                                 

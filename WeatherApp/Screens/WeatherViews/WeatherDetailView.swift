@@ -10,7 +10,6 @@ import SwiftUI
 struct WeatherDetailView: View {
     let selectedAddress: AddressResult
     var topEdge:CGFloat
-    
     @State var offset : CGFloat = 0
     @Binding var isShowingWeatherSheetView : Bool
     @EnvironmentObject var locationHelper: LocationHelper
@@ -22,37 +21,12 @@ struct WeatherDetailView: View {
             if let selectedWeather = weatherViewModel.weather{
                 GeometryReader{ proxy in
                     
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "HH:mm:ss"
-                    dateFormatter.timeZone = TimeZone(identifier: "\(selectedWeather.timezone)")
+                    self.backgroundImage(selectedWeather: selectedWeather)
+                        .resizable()
+                        .ignoresSafeArea()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: proxy.size.width, height: proxy.size.height)
 
-                    
-                    if let date = dateFormatter.date(from: selectedWeather.currentConditions.datetime) {
-                        var calendar = Calendar(identifier: .gregorian)
-                        calendar.timeZone = dateFormatter.timeZone!
-                        
-                        let hour = calendar.component(.hour, from: date)
-                        
-                        if hour >= 17 || hour < 6 {
-                            return Image("nightSky")
-                                .resizable()
-                                .ignoresSafeArea()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: proxy.size.width, height: proxy.size.height)
-                        } else {
-                            return Image("sunSky")
-                                .resizable()
-                                .ignoresSafeArea()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: proxy.size.width, height: proxy.size.height)
-                        }
-                    }else{
-                        return Image("sunSky")
-                            .resizable()
-                            .ignoresSafeArea()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: proxy.size.width, height: proxy.size.height)
-                    }
                 }
                 .ignoresSafeArea()
             }
@@ -78,6 +52,7 @@ struct WeatherDetailView: View {
                             Button{
                                 if let weather = weatherViewModel.weather{
                                     city.add(weather)
+                                    saveItemsToUserDefaults(weather: city.cities)
                                     isShowingWeatherSheetView = false
                                 }else{
                                     print("weather cannot be added")
@@ -124,7 +99,6 @@ struct WeatherDetailView: View {
                             }
                         }
                     }
-                    
                 }
             }
         }
@@ -164,5 +138,38 @@ struct WeatherDetailView: View {
         }
         return 0
     }
+    
+    func saveItemsToUserDefaults(weather: [Weather]) {
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(weather)
+            UserDefaults.standard.set(data, forKey: "weatherList")
+        } catch {
+            print("Error encoding items: \(error)")
+        }
+    }
+    
+    func backgroundImage(selectedWeather:Weather) -> Image{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        dateFormatter.timeZone = TimeZone(identifier: "\(selectedWeather.timezone)")
+
+        
+        if let date = dateFormatter.date(from: selectedWeather.currentConditions.datetime) {
+            var calendar = Calendar(identifier: .gregorian)
+            calendar.timeZone = dateFormatter.timeZone!
+            
+            let hour = calendar.component(.hour, from: date)
+            
+            if hour >= 17 || hour < 6 {
+                return Image("nightSky")
+            } else {
+                return Image("sunSky")
+            }
+        }else{
+            return Image("sunSky")
+        }
+    }
+    
 }
 
