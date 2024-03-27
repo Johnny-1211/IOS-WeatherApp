@@ -1,6 +1,6 @@
 
 import SwiftUI
-
+import SpriteKit
 struct WeatherDetailView: View {
     let selectedAddress: AddressResult
     var topEdge:CGFloat
@@ -11,7 +11,6 @@ struct WeatherDetailView: View {
     @EnvironmentObject var city: City
     @Binding var backgroundImage :String
 
-    
     var body: some View {
         ZStack{
             if let selectedWeather = weatherViewModel.weather{
@@ -25,10 +24,21 @@ struct WeatherDetailView: View {
 
                 }
                 .ignoresSafeArea()
-            
+                
+                if selectedWeather.currentConditions.conditions.hasPrefix("Rain"){
+                    GeometryReader{_ in
+                        SpriteView(scene: RainFall(), options: [.allowsTransparency])
+                            .ignoresSafeArea()
+                    }
+                }else if selectedWeather.currentConditions.conditions.hasPrefix("Snow"){
+                    GeometryReader{_ in
+                        SpriteView(scene: RainFall(), options: [.allowsTransparency])
+                            .ignoresSafeArea()
+                    }
+                }
+
             
             if isShowingWeatherSheetView{
-                    
                     VStack{
                         HStack{
                             CancelBtn()
@@ -86,6 +96,7 @@ struct WeatherDetailView: View {
                 })
                 try await Task.sleep(nanoseconds: 30_000_000)
             }
+
         }
     }
     func getTitleOpacity() -> CGFloat{

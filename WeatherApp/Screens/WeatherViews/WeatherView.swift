@@ -25,12 +25,12 @@ struct WeatherView: View {
             }
             .ignoresSafeArea()
             
-            if selectedWeather.currentConditions.conditions.contains("Rain"){
+            if currentWeatherCondition.hasPrefix("Rain"){
                 GeometryReader{_ in
                     SpriteView(scene: RainFall(), options: [.allowsTransparency])
                         .ignoresSafeArea()
                 }
-            }else if selectedWeather.currentConditions.conditions.contains("Snow"){
+            }else if currentWeatherCondition.hasPrefix("Snow"){
                 GeometryReader{_ in
                     SpriteView(scene: RainFall(), options: [.allowsTransparency])
                         .ignoresSafeArea()
